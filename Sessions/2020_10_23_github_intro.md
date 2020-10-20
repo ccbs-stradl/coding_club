@@ -67,11 +67,11 @@ ___________
     - Go to [Github](www.github.com)
     - Click on "New" in the top left.
     <br />
-    ![Repo](/Users/aes/OneDrive - University of Edinburgh/PhD/Meetings/Coding Club/markdown_images/github_repo.png)
+    ![Repo](https://raw.githubusercontent.com/AmeliaES/coding_club/main/markdown_images/github_repo.png?token=AFZP2YZ7PYTOEPALHTWTKCC7S4AUK)
     - Enter the name of your project and choose whether to make it private or public.
     *NB If you don't have the option to make it private you need to change your settings to a student account associated with your university email address.*
     <br />
-    ![Repo](/Users/aes/OneDrive - University of Edinburgh/PhD/Meetings/Coding Club/markdown_images/github_repo2.png)
+    ![Repo](https://raw.githubusercontent.com/AmeliaES/coding_club/main/markdown_images/github_repo2.png?token=AFZP2Y6DERD2HX7ZI4VAVUS7S4AYU)
     - Push your existing repo from the command line:
     ```
     $ git remote add origin git@github.com:AmeliaES/Project_name.git
