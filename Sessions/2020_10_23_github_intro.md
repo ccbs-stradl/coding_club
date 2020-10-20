@@ -5,7 +5,7 @@
 ____________
 1. [Install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your computer.
 <br />
-    *Easiest way to do this on UNIX OS is to use the package manager [Homebrew](https://brew.sh/):*
+    Easiest way to do this on UNIX OS is to use the package manager [Homebrew](https://docs.brew.sh/Installation/) :
     ``` brew install git ```
 <br />
 
@@ -67,7 +67,7 @@ ___________
     - Go to [Github](www.github.com)
     - Click on "New" in the top left.
     <br />
-    ![Repo](https://raw.githubusercontent.com/AmeliaES/coding_club/main/markdown_images/github_repo.png?token=AFZP2YZ7PYTOEPALHTWTKCC7S4AUK)
+    ![github_repo](https://user-images.githubusercontent.com/24313187/96578331-ee906180-12cc-11eb-9577-9a27371f443b.png)
     - Enter the name of your project and choose whether to make it private or public.
     *NB If you don't have the option to make it private you need to change your settings to a student account associated with your university email address.*
     <br />
