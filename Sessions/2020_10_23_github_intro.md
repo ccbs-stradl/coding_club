@@ -4,10 +4,11 @@
 ##### Already have git and github set up? Go to stage 4:
 ____________
 1. [Install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your computer.
-<br />
-    Easiest way to do this on UNIX OS is to use the package manager [Homebrew](https://docs.brew.sh/Installation/) :
-    ``` brew install git ```
-<br />
+
+
+   *Easiest way to do this on UNIX OS is to use the package manager [Homebrew](https://docs.brew.sh/Installation/):* ``` brew install git ```
+
+
 
 2. Create a [github](https://github.com/) account.
 3. Set up git with your username and email. Follow this simplified guide [here](https://kbroman.org/github_tutorial/pages/first_time.html), including configuring your username and email associated with github and using an SSH key.
@@ -30,7 +31,6 @@ ___________
 5. Create a [.gitignore](https://www.pluralsight.com/guides/how-to-use-gitignore-file) file:
 
     - Create a new file called .gitignore
-    <br />
     *Note that any files with a "." in front of them are hidden. On Mac use Command+Shift+Dot to toggle between these files shown or hidden in Finder.*
     ```
     $ touch .gitignore
@@ -67,10 +67,13 @@ ___________
     - Go to [Github](www.github.com)
     - Click on "New" in the top left.
     <br />
-    ![github_repo](https://user-images.githubusercontent.com/24313187/96578331-ee906180-12cc-11eb-9577-9a27371f443b.png)
-    - Enter the name of your project and choose whether to make it private or public.
+
+    ![github_repo](https://raw.githubusercontent.com/AmeliaES/coding_club/main/markdown_images/github_repo.png?token=AFZP2Y6DERD2HX7ZI4VAVUS7S4AYU)
+
+     - Enter the name of your project and choose whether to make it private or public.
     *NB If you don't have the option to make it private you need to change your settings to a student account associated with your university email address.*
     <br />
+
     ![Repo](https://raw.githubusercontent.com/AmeliaES/coding_club/main/markdown_images/github_repo2.png?token=AFZP2Y6DERD2HX7ZI4VAVUS7S4AYU)
     - Push your existing repo from the command line:
     ```
@@ -93,6 +96,7 @@ ___________
 
 
 <br />
+
 ### Other useful links:
 - [Github cheatsheet](https://education.github.com/git-cheat-sheet-education.pdf)
 
