@@ -1,6 +1,7 @@
 ## KT Coding Club: Introduction to Git and Github
 
 ### Checklist:
+*NB. I do all the following in a terminal on Mac. There is also the option to run the terminal within R studio - I've not tried this but heard it can be slow. You should also be able to run it in Windows equivalent of terminal.*
 ##### Already have git and github set up? Go to stage 4:
 ____________
 1. [Install Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) on your computer.
@@ -68,7 +69,7 @@ ___________
     - Click on "New" in the top left.
     <br />
 
-    ![github_repo](https://raw.githubusercontent.com/AmeliaES/coding_club/main/markdown_images/github_repo.png?token=AFZP2Y6DERD2HX7ZI4VAVUS7S4AYU)
+    ![github_repo](https://raw.githubusercontent.com/AmeliaES/coding_club/main/markdown_images/github_repo.png?token=AFZP2Y3A22ASI3DOX5OQNZK7TAFLY)
 
      - Enter the name of your project and choose whether to make it private or public.
     *NB If you don't have the option to make it private you need to change your settings to a student account associated with your university email address.*
