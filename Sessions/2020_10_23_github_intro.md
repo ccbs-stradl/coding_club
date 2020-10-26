@@ -66,16 +66,11 @@ ___________
 
 8. Put your Git repo onto Github:
     - Go to [Github](www.github.com)
-    - Click on "New" in the top left.
-    <br />
-
-    ![github_repo](https://raw.githubusercontent.com/AmeliaES/coding_club/main/markdown_images/github_repo.png?token=AFZP2Y3A22ASI3DOX5OQNZK7TAFLY)
-
+    - Click on "New" in the top left.  
+    ![github_repo](../markdown_images/github_repo.png)
      - Enter the name of your project and choose whether to make it private or public.
-    *NB If you don't have the option to make it private you need to change your settings to a student account associated with your university email address.*
-    <br />
-
-    ![Repo](https://raw.githubusercontent.com/AmeliaES/coding_club/main/markdown_images/github_repo2.png?token=AFZP2Y6DERD2HX7ZI4VAVUS7S4AYU)
+    *NB If you don't have the option to make it private you need to change your settings to a student account associated with your university email address.*  
+    ![Repo](../markdown_images/github_repo2.png)
     - Push your existing repo from the command line:
     ```
     $ git remote add origin git@github.com:AmeliaES/Project_name.git
@@ -95,11 +90,5 @@ ___________
     $ git status
     ```
 
-
-<br />
-
 ### Other useful links:
 - [Github cheatsheet](https://education.github.com/git-cheat-sheet-education.pdf)
-
-
-<br />
