@@ -44,11 +44,11 @@ By default git is usually pretty good about merging multiple commits that edit t
 
 9. **Buddy A** Change the title of the project
 	```
-	# Our Amazing Collorative Project
+	# Our Amazing Collaborative Project
 	```
 10. **Buddy B** Change the title of the project
 	```
-	# Our Stupendous Collorative Project
+	# Our Stupendous Collaborative Project
 	```
 11. **Buddy A** `add`, `commit`, and `push` your changes.
 12. **Buddy B** `pull` from the repository. **Question: what message do you get?**
@@ -83,7 +83,7 @@ By default git is usually pretty good about merging multiple commits that edit t
 	The first section starting with `<<<<<<< HEAD` shows the content in Buddy B's most recent commit ("`HEAD`"). The conflicting commit contents starts on the `=======` line and finishes with `>>>>>>>` followed by the commit hash.
 14. **Buddy B**: Edit the `README.md` merge conflict section to reconcile the two sets of changes:
 	```
-	# Our Amazingly Stupendous Collorative Project
+	# Our Amazingly Stupendous Collaborative Project
 	```
 	`add`, `commit`, and `push` the changes to Buddy A.
 
@@ -124,7 +124,7 @@ Pushing can also be used to copy all the changes in branch over to GitHub `git p
 Branches can be merged together using the `git merge` command. `git merge BRANCH_NAME` will merge the named branch  `BRANCH_NAME` into the currently active branch.
 
 28. **Buddy A**: Switch back to the `main` branch then merge your changes from the `topicA` branch: `git checkout main; git merge topicA`
-29. **Buddy B**: Switch to your `topicB` branch and merge the changes from `topicA`: `git checkout topicB; git merge topicB`
+29. **Buddy B**: Switch to your `topicB` branch and merge the changes from `topicA`: `git checkout topicB; git merge topicA`
 30. **Buddy A and B**: Push your changes up to GitHub
 
 ## Pull requests
