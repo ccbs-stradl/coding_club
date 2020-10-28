@@ -124,7 +124,7 @@ Pushing can also be used to copy all the changes in branch over to GitHub `git p
 Branches can be merged together using the `git merge` command. `git merge BRANCH_NAME` will merge the named branch  `BRANCH_NAME` into the currently active branch.
 
 28. **Buddy A**: Switch back to the `main` branch then merge your changes from the `topicA` branch: `git checkout main; git merge topicA`
-29. **Buddy B**: Switch to your `topicB` branch and merge the changes from `topicA`: `git checkout topicB; git merge topicA`
+29. **Buddy B**: Switch to your `topicB` branch and merge the changes from `main`: `git checkout topicB; git merge main`
 30. **Buddy A and B**: Push your changes up to GitHub
 
 ## Pull requests
