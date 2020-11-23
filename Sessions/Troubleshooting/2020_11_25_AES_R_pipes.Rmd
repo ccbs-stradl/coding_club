@@ -5,19 +5,6 @@ date: "25/11/2020"
 output: rmarkdown::github_document
 ---
 
-<style type="text/css">
-
-body{ /* Normal  */
-      font-size: 15px;
-      font-family: Arial;
-  }
-
-code.r{ /* Code block */
-    font-size: 15px;
-}
-
-</style>
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
