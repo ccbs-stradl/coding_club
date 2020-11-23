@@ -1,6 +1,6 @@
 ### Welcome to the Kennedy Tower Coding Club!
 
-**Please see [/Sessions](https://github.com/ccbs-stradl/coding_club/tree/main/Sessions) folder for materials and docs from coding club sessions.**
+**Please see [/Sessions](https://github.com/ccbs-stradl/coding_club/tree/main/Sessions) folder for materials and docs from coding club sessions and Resources.md for a list of coding related resources.**
 
 * Content for sessions that should remain private within the group and large files (eg. videos) can be found on [Microsoft Teams](https://teams.microsoft.com/_#/school/files/Coding%20club?threadId=19%3Ac424c64008714e978593e70c6171f95a%40thread.tacv2&ctx=channel&context=Coding%2520club%2520recordings%2520%2526%2520slides&rootfolder=%252Fsites%252FDepressionResearch%252FShared%2520Documents%252FCoding%2520club%252FCoding%2520club%2520recordings%2520%2526%2520slides).
 
