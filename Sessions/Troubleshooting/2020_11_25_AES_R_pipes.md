@@ -1,6 +1,7 @@
 Using the pipe (%\>%) operator in R
 ================
 Amelia Edmondson-Stait
+
 25/11/2020
 
 ### What are pipes?
