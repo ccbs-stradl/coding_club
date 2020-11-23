@@ -2,7 +2,7 @@
 title: "Using the pipe (%>%) operator in R"
 author: "Amelia Edmondson-Stait"
 date: "25/11/2020"
-output: html_document
+output: rmarkdown::github_document
 ---
 
 <style type="text/css">
