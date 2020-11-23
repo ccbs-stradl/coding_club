@@ -3,6 +3,8 @@
 ### Documentation and Good Coding Practices:
 * [The Turing Way](https://the-turing-way.netlify.app/welcome.html)
   * Guide to reproducible data science. Really nice guide on code review, file naming conventions etc. Definitely a resource worth checking out.
+* [Tidyverse style](https://style.tidyverse.org/index.html) for R
+  * Excellent guide on how to write tidy, readable and understandable code in R.
 
 * [How to make a good README file.](https://www.makeareadme.com/)
 
