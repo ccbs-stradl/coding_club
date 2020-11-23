@@ -4,5 +4,7 @@ Videos_edited/
 Sessions/*.html
 *.docx
 /KTCC_timetable.docx
+/Sessions/Troubleshooting/*.tex
+/Sessions/Troubleshooting/*.log
 
 
