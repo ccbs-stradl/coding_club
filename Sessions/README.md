@@ -13,3 +13,5 @@
 * **2020_11_11_eddie.md**
   * Tips on using Eddie hopefully useful for both people new to Eddie and those who have been using it a while but want to use it more efficently. 
 
+* *Troubleshooting/*
+  * Sessions on troubleshooting coding problems or showing solutions to problems.
