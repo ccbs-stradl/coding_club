@@ -77,10 +77,10 @@ So let's try and get the same output but use pipes instead to make our code much
 ```{r}
 sumstats_chr1 <- sumstats %>%
                  filter(CHR == 1) %>%
-                 arrange(match(P, sort(P)))
+                 arrange(P)
 ```
 
-This is much easier to read and follow. However, I still don't like the third line where I am clustering `match` within `arrange`.
+This is much easier to read and follow. 
 
 ### Problems I'm still trying to figure out the answers for
 
@@ -94,6 +94,17 @@ x <-1
 SNP <- runif(220, min=11250701, max=185339560) %>%
   round(0) %>%
     paste("rs", x, sep = "") # This line won't work as I haven't defined x.
+```
+
+#### Solution 
+
+During coding club session Hon Wah helpfully told me you can use `.` in place of `x` and this will work!
+
+```{r}
+SNP <- runif(220, min=11250701, max=185339560) %>%
+  round(0) %>%
+    paste("rs", ., sep = "") 
+SNP[1:10]
 ```
 
 As I said, only just started playing around with using pipes so would appreciate any tips or reccomendations of `dplyr` functions to use with them to wrangle dataframes in R.

@@ -1,7 +1,6 @@
 Using the pipe (%\>%) operator in R
 ================
 Amelia Edmondson-Stait
-
 25/11/2020
 
 ### What are pipes?
@@ -43,13 +42,13 @@ sumstats <- data.frame("CHR" = CHR, "SNP" = SNP, "BP" = BP, "A1" = A1, "A2" = A2
 head(sumstats)
 ```
 
-    ##   CHR         SNP      BP A1 A2         OR          P
-    ## 1   1  rs72476188  934914  A  T 0.89771191 0.75443383
-    ## 2   1 rs120037803 1628429  A  T 0.88529691 0.16733472
-    ## 3   1  rs20510094 1343551  C  G 0.85302117 0.49599929
-    ## 4   1  rs18774834 1940555  T  A 0.27643033 0.09970212
-    ## 5   1 rs178209757 1212031  C  G 0.12180256 0.80846421
-    ## 6   1 rs113436077 2163825  A  T 0.05224445 0.09756179
+    ##   CHR         SNP      BP A1 A2        OR          P
+    ## 1   1 rs169577724 1299355  A  T 0.2967200 0.18669086
+    ## 2   1  rs20516056 1069105  G  C 0.6981335 0.67922492
+    ## 3   1 rs130240283 1330981  A  T 0.2561950 0.77070019
+    ## 4   1 rs117293838  682986  G  C 0.4991760 0.55590438
+    ## 5   1 rs152731599 1178309  T  A 0.9354692 0.06191494
+    ## 6   1  rs74813939 2493199  G  C 0.7158471 0.14075606
 
 ### How can we use pipes?
 
@@ -64,17 +63,17 @@ sumstatrs_chr1 <- sumstats[sumstats$CHR == 1,][order(sumstats[sumstats$CHR == 1,
 sumstatrs_chr1
 ```
 
-    ##    CHR         SNP      BP A1 A2         OR          P
-    ## 10   1 rs153525799 2172435  A  T 0.49161645 0.06531572
-    ## 6    1 rs113436077 2163825  A  T 0.05224445 0.09756179
-    ## 4    1  rs18774834 1940555  T  A 0.27643033 0.09970212
-    ## 9    1 rs107160519 1265252  C  G 0.03444296 0.10466888
-    ## 2    1 rs120037803 1628429  A  T 0.88529691 0.16733472
-    ## 3    1  rs20510094 1343551  C  G 0.85302117 0.49599929
-    ## 8    1 rs178941236  226983  G  C 0.05226665 0.73829261
-    ## 1    1  rs72476188  934914  A  T 0.89771191 0.75443383
-    ## 5    1 rs178209757 1212031  C  G 0.12180256 0.80846421
-    ## 7    1  rs34176619 2395640  A  T 0.50744761 0.93826558
+    ##    CHR         SNP      BP A1 A2        OR          P
+    ## 5    1 rs152731599 1178309  T  A 0.9354692 0.06191494
+    ## 9    1  rs37912199 1348439  G  C 0.8107235 0.08953468
+    ## 6    1  rs74813939 2493199  G  C 0.7158471 0.14075606
+    ## 1    1 rs169577724 1299355  A  T 0.2967200 0.18669086
+    ## 7    1 rs137895499  995413  C  G 0.3357441 0.25338294
+    ## 8    1  rs69467042  639662  C  G 0.6164725 0.32270005
+    ## 4    1 rs117293838  682986  G  C 0.4991760 0.55590438
+    ## 2    1  rs20516056 1069105  G  C 0.6981335 0.67922492
+    ## 3    1 rs130240283 1330981  A  T 0.2561950 0.77070019
+    ## 10   1  rs81192722  607216  A  T 0.8698003 0.83427490
 
 You can see that this did what I wanted it to, but it’s really not an
 easy to read piece of code. I could overcome this by creating
@@ -107,11 +106,10 @@ code much more readable.
 ``` r
 sumstats_chr1 <- sumstats %>%
                  filter(CHR == 1) %>%
-                 arrange(match(P, sort(P)))
+                 arrange(P)
 ```
 
-This is much easier to read and follow. However, I still don’t like the
-third line where I am clustering `match` within `arrange`.
+This is much easier to read and follow.
 
 ### Problems I’m still trying to figure out the answers for
 
@@ -125,6 +123,21 @@ SNP <- runif(220, min=11250701, max=185339560) %>%
   round(0) %>%
     paste("rs", x, sep = "") # This line won't work as I haven't defined x.
 ```
+
+#### Solution
+
+During coding club session Hon Wah helpfully told me you can use `.` in
+place of `x` and this will work\!
+
+``` r
+SNP <- runif(220, min=11250701, max=185339560) %>%
+  round(0) %>%
+    paste("rs", ., sep = "") 
+SNP[1:10]
+```
+
+    ##  [1] "rs114375437" "rs120054546" "rs183978719" "rs156412780" "rs177030363"
+    ##  [6] "rs170307882" "rs132546455" "rs155696841" "rs73273762"  "rs122681020"
 
 As I said, only just started playing around with using pipes so would
 appreciate any tips or reccomendations of `dplyr` functions to use with
