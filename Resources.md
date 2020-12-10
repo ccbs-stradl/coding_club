@@ -34,3 +34,9 @@
 * [Data Science Statistics & Machine Learning](https://www.coursera.org/specializations/data-science-statistics-machine-learning)
 * [Machine Learning](https://www.coursera.org/learn/machine-learning) 
 * [Introduction to probability](https://www.coursera.org/learn/probability-intro)
+
+### Working with large cohort data:
+* Creating participant demographic table using R package [tableone](https://www.r-bloggers.com/2016/02/table-1-and-the-characteristics-of-study-population/).
+
+### Working with large cohort genetic data:
+* [Shen](https://github.com/xshen796) Xueyi's guide on using [SBayesR](https://github.com/xshen796/CodingClubPsych/blob/master/SBayesR/SBayesR_XS.md).
