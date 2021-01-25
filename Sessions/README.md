@@ -13,5 +13,14 @@
 * [**2020_11_11_eddie.md**](https://github.com/ccbs-stradl/coding_club/blob/main/Sessions/2020_11_11_eddie.md)
   * Tips on using Eddie hopefully useful for both people new to Eddie and those who have been using it a while but want to use it more efficently. 
 
+* [**2020_12_09_MH_efficient_R_coding.pdf**](https://github.com/ccbs-stradl/coding_club/blob/main/Sessions/2020_12_09_MH_efficient_R_coding.pdf)
+  * Mat Harris' session on Tips for efficient coding.
+  
+* [2021_01_27_new_starter_checklist.md](https://github.com/ccbs-stradl/coding_club/blob/main/Sessions/2021_01_27_new_starter_checklist.md)
+  * Things new people to the group can check.
+
+* [2021_01_27_using_screen.md](https://github.com/ccbs-stradl/coding_club/blob/main/Sessions/2021_01_27_using_screen.md)
+  * Some tips on using screen, a unix terminal multiplexer.
+
 * [*Troubleshooting/*](https://github.com/ccbs-stradl/coding_club/tree/main/Sessions/Troubleshooting)
   * Sessions on troubleshooting coding problems or showing solutions to problems.
