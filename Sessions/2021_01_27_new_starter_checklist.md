@@ -12,6 +12,6 @@ Both connecting to the VPN and using Eddie will be different for Mac and Windows
 Also on the [same doc as above](https://github.com/ccbs-stradl/coding_club/blob/main/Sessions/2020_11_11_eddie.md#storing-data-on-eddie-and-getting-files-tofrom-datastore), this will tell you about our shared drive called `GenScotDepression` you need permission to access this.
 
 * Other departmental resources:
-  - Departmental wiki is full of useful links and info and is generally a good first port of call.
+  - [Departmental wiki](https://www.wiki.ed.ac.uk/display/Psychiatry) is full of useful links and info and is generally a good first port of call.
   - Work in progress: [Github repo](https://github.com/ccbs-stradl/ukb) with FAQs for UKB specifically. Instead of Mark/Shen being asked the same question by different people we are begining to collate these FAQs into one doc that everyone can add to.
   - [Coding resources](https://github.com/ccbs-stradl/coding_club/blob/main/Resources.md) from this repo.
