@@ -10,6 +10,10 @@
 
 * Please find the current [timetable](https://teams.microsoft.com/l/file/EE7AA8AB-21F6-4D6B-BAAB-23228AE035CE?tenantId=2e9f06b0-1669-4589-8789-10a06934dc61&fileType=docx&objectUrl=https%3A%2F%2Fuoe.sharepoint.com%2Fsites%2FDepressionResearch%2FShared%20Documents%2FCoding%20club%2FKTCC_timetable.docx&baseUrl=https%3A%2F%2Fuoe.sharepoint.com%2Fsites%2FDepressionResearch&serviceName=teams&threadId=19:c424c64008714e978593e70c6171f95a@thread.tacv2&groupId=2fc34ec6-881a-4474-8731-d36e84b8ec9e) for sessions on the Depression Research Microsoft Teams Coding Club channel.
 
+#### For people new to the Psychiatry department:
+* For anyone working on UKB data a few of use collated a list of [FAQ's](https://github.com/ccbs-stradl/ukb/blob/main/FAQ.md) which may be a useful first port of call if you are new the group and want to know where to get started with using UKB data.
+
+* Also see this [checklist for new starters](https://github.com/ccbs-stradl/coding_club/blob/main/Sessions/2021_01_27_new_starter_checklist.md) which gives an overview of what things need to be set up and where to go for help.
 
 ----------------------------------------------------
 #### Clone this repository to your local computer:
