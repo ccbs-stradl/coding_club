@@ -1,0 +1,201 @@
+---
+title: "Data Transformation with 'dplyr'"
+output: github_document
+---
+
+*Aim: Get familiar with using the [`dplyr`](https://dplyr.tidyverse.org/) package to wrangle dataframes.*
+
+
+*Please see* ***[Data Transformation with dplyr cheat sheets](https://rstudio.com/resources/cheatsheets/)*** *for a nice overview of functions in this package.*
+
+________________________________________________
+
+Load in packages:
+
+```{r, message = F, warning=FALSE}
+# install.packages("dplyr")
+# install.packages("tibble")
+library(dplyr)
+library(tibble)
+```
+
+In order to use `dplyr` functions you need to ensure your dataframe is in "tidy" format. This means in your dataframe each row represents an observation and each column represents a variable. This is also called "long format".
+
+We will use the `mtcars` dataset which is in tidy format to understand dplyr functions.
+```{r}
+head(mtcars)
+```
+
+### Summarising data
+
+<span style="color: darkblue;"> 
+**How do I get summary of data?**
+</span>
+
+```{r}
+summary(mtcars)
+
+# Get mean of mpg
+summarise(mtcars, avg=mean(mpg))
+
+# What's the best way to get the mean for all columns?
+```
+
+<span style="color: darkblue;"> 
+**How do I get summaries of grouped variables?**
+</span>
+
+```{r}
+grouped_mtcars <- mtcars %>%
+                    group_by(cyl) %>%
+                    summarise(avg=mean(mpg))
+grouped_mtcars
+```
+
+Pipe operator `%>%` can be used to write tidy code. You can see that the above, with pipes, is easier to read than the following, without pipes:
+```{r}
+summarise(group_by(mtcars, cyl), avg = mean(mpg))
+```
+
+
+### Manipulating cases ie. rows 
+
+<span style="color: darkblue;"> 
+**How do I subset rows based on a logical criteria?**
+</span>
+```{r}
+filter(mtcars, mpg > 25)
+```
+
+<span style="color: darkblue;"> 
+**How do I remove rows with duplicate values?**
+</span>
+
+```{r}
+# Return all unique items for "cyl" column
+distinct(mtcars, cyl)
+
+# How do you keep the cases from the other columns?
+
+# How can you ensure you're removing the correct duplicate cases? Presumbly it keeps the first unique case?
+```
+
+<span style="color: darkblue;"> 
+**How do I select rows by position?**
+</span>
+```{r}
+mtcars %>%
+  slice(10:15)
+
+# last 5 rows:
+mtcars %>% 
+  slice((nrow(mtcars)-5):nrow(mtcars))
+
+# Is there a neater way of doing that?
+```
+
+<span style="color: darkblue;"> 
+**How do I select top n entries of a variable and order them?**
+</span>
+
+```{r}
+top_n(mtcars, 5, mpg) %>%
+  arrange(desc(mpg))
+```
+
+
+### Manipulating variables ie. columns
+
+<span style="color: darkblue;"> 
+**How do I subset a dataframe by columns?**
+</span>
+```{r}
+select(mtcars, mpg, cyl) %>%
+  head()
+
+# To exract columns as a vector:
+pull(mtcars, mpg, cyl)
+```
+
+<span style="color: darkblue;"> 
+**Which function should I use if I want to add a column to my dataframe?**
+</span>
+
+```{r}
+mutate(mtcars, gpm = 1/mpg) %>%
+  head()
+# Can input any vector, as long as it's the same length as number of rows in your data frame. eg:
+vector <- rep(1, nrow(mtcars))
+mutate(mtcars, random_vec = vector) %>%
+  head()
+```
+
+<span style="color: darkblue;"> 
+**How do I create a new column but drop the rest?**
+</span>
+
+```{r}
+transmute(mtcars, gpm = 1/mpg) %>%
+  head()
+```
+
+<span style="color: darkblue;"> 
+**How do I apply a function to every column?**
+</span>
+
+```{r}
+mutate_all(mtcars, funs(.*100)) %>% # note the use of . in funs
+  head()
+# What if not all our columns were numeric? We can do this:
+mutate_if(mtcars, is.numeric, funs(.*100)) %>%
+  head()
+
+# What if you want to log transform a few variables for example.
+# eg. log transform the mpg and cyl columns only:
+mutate_at(mtcars, vars(c(mpg, cyl)) , funs(log(.))) %>%
+  head
+
+```
+
+
+<span style="color: darkblue;"> 
+**How do I rename columns?**
+</span>
+
+```{r}
+rename(mtcars, miles_per_gallon=mpg) %>%
+  head()
+
+# Be careful about names, avoid spaces. If you have have spaces use `` to enclose the variable name.
+rename(mtcars, `miles per gallon`=mpg) %>%
+  head()
+```
+
+### Row names
+Be aware that if you have a variable stored as a row name then that you want to work with then you need to move it to a collumn. The `tibble` package has a function for this.
+```{r}
+rownames_to_column(mtcars, var="Car") %>%
+  head()
+```
+
+### Combining Tables
+
+`dplyr` also has functions for combining data frames:
+
+```{r}
+# New dataframe:
+df <- select(mtcars, new_mpg=mpg)
+bind_cols(mtcars, df) %>% # BE SURE ROWS ALLIGN
+  head()
+```
+May be better to use a "mutating join" as that will match values with the rows they correspond to, ie. if your rows don't allign.
+These include: `left_join`,`right_join`, `inner_join` and `full_join`. 
+Use the `by=` argument to specify the column(s) both data frames match on or a named vector if the columns have different names in each data frame.
+
+Similarly, there are functions for rows. Such as `bind_rows`, `intersect`, `setdiff`, `union`.
+
+
+
+
+
+
