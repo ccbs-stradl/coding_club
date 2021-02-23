@@ -1,4 +1,4 @@
-String manipulation and regular expressions
+String manipulation and date parsing
 ================
 
 *Aim: Learn how to extract information from strings (text and character
@@ -51,7 +51,7 @@ as a command)
 echo "Hi, $USER, the date is $(date +%Y-%m-%d)"
 ```
 
-    ## Hi, mark, the date is 2021-02-22
+    ## Hi, mark, the date is 2021-02-23
 
 In R, strings are stored as type `character`
 
@@ -124,8 +124,8 @@ nchar(c("hello", "abracadabra"))
 ### Subsetting strings (`substr`)
 
 Parts of a string can be extracted by character position using `subtr`
-(substring). The first two characters of the word “hello” can be
-extracted with
+(substring). The third, fourth, and fifth characters of the word “hello”
+can be extracted with
 
 ``` r
 substr("hello", start=3, stop=5)
@@ -175,7 +175,5 @@ classic_pub
 Tidyverse: `stringr`
 --------------------
 
-Regular expressions
-===================
-
-Given a particular string…
+Parsing dates (`lubridate`)
+===========================
