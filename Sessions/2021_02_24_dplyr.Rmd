@@ -21,10 +21,19 @@ library(tibble)
 
 In order to use `dplyr` functions you need to ensure your dataframe is in "tidy" format. This means in your dataframe each row represents an observation and each column represents a variable. This is also called "long format".
 
-We will use the `mtcars` dataset which is in tidy format to understand dplyr functions.
+We will use the `mtcars` (Motor Trend magazine car road tests) dataset which is in tidy format to understand dplyr functions.
 ```{r}
 head(mtcars)
 ```
+
+Tidyverse includes an enhancement to `data.frame`s called a "tibble" that are useful for interactive data analysis. Its most useful feature is that when entered in the command prompt on its own, a `tibble` will by default print out only its first 10 rows and only as many column as can be displayed on a single line. Use `as_tibble` to convert a normal `data.frame` to a `tibble`
+
+```{r}
+mtcars <- as_tibble(datasets::mtcars)
+mtcars
+```
+
+
 
 ### Summarising data
 
@@ -110,11 +119,10 @@ top_n(mtcars, 5, mpg) %>%
 **How do I subset a dataframe by columns?**
 </span>
 ```{r}
-select(mtcars, mpg, cyl) %>%
-  head()
+select(mtcars, mpg, cyl)
 
-# To exract columns as a vector:
-pull(mtcars, mpg, cyl)
+# To extract a column as a vector:
+pull(mtcars, mpg)
 ```
 
 <span style="color: darkblue;"> 
@@ -122,12 +130,11 @@ pull(mtcars, mpg, cyl)
 </span>
 
 ```{r}
-mutate(mtcars, gpm = 1/mpg) %>%
-  head()
+mutate(mtcars, gpm = 1/mpg)
+
 # Can input any vector, as long as it's the same length as number of rows in your data frame. eg:
-vector <- rep(1, nrow(mtcars))
-mutate(mtcars, random_vec = vector) %>%
-  head()
+a_vector <- rep(1, nrow(mtcars))
+mutate(mtcars, random_vec = a_vector)
 ```
 
 <span style="color: darkblue;"> 
@@ -135,25 +142,24 @@ mutate(mtcars, random_vec = vector) %>%
 </span>
 
 ```{r}
-transmute(mtcars, gpm = 1/mpg) %>%
-  head()
+transmute(mtcars, gpm = 1/mpg)
 ```
 
 <span style="color: darkblue;"> 
 **How do I apply a function to every column?**
 </span>
 
+The function to apply can either be supplied directly (`fun`) or as an anonymous ("lambda") function using the formula syntax (`~fun(.)`)
+
 ```{r}
-mutate_all(mtcars, funs(.*100)) %>% # note the use of . in funs
-  head()
+mutate_all(mtcars, ~.*100) # note the use of . in the lambda function
+
 # What if not all our columns were numeric? We can do this:
-mutate_if(mtcars, is.numeric, funs(.*100)) %>%
-  head()
+mutate_if(mtcars, is.numeric, ~.*100)
 
 # What if you want to log transform a few variables for example.
 # eg. log transform the mpg and cyl columns only:
-mutate_at(mtcars, vars(c(mpg, cyl)) , funs(log(.))) %>%
-  head
+mutate_at(mtcars, vars(c(mpg, cyl)) , log)
 
 ```
 
@@ -163,19 +169,20 @@ mutate_at(mtcars, vars(c(mpg, cyl)) , funs(log(.))) %>%
 </span>
 
 ```{r}
-rename(mtcars, miles_per_gallon=mpg) %>%
-  head()
+rename(mtcars, miles_per_gallon=mpg)
 
 # Be careful about names, avoid spaces. If you have have spaces use `` to enclose the variable name.
-rename(mtcars, `miles per gallon`=mpg) %>%
-  head()
+rename(mtcars, `miles per gallon`=mpg) 
 ```
 
 ### Row names
-Be aware that if you have a variable stored as a row name then that you want to work with then you need to move it to a collumn. The `tibble` package has a function for this.
+Be aware that if you have a variable stored as a row name then that you want to work with then you need to move it to a column. The `tibble` package has a function for this.
 ```{r}
-rownames_to_column(mtcars, var="Car") %>%
-  head()
+rownames_to_column(datasets::mtcars, var="Car") 
+```
+We can also do this conversion when making the `tibble`
+```{r}
+as_tibble(datasets::mtcars, rownames='Car')
 ```
 
 ### Combining Tables
@@ -184,9 +191,8 @@ rownames_to_column(mtcars, var="Car") %>%
 
 ```{r}
 # New dataframe:
-df <- select(mtcars, new_mpg=mpg)
-bind_cols(mtcars, df) %>% # BE SURE ROWS ALLIGN
-  head()
+dataf <- select(mtcars, new_mpg=mpg)
+bind_cols(mtcars, dataf) # BE SURE ROWS ALLIGN
 ```
 May be better to use a "mutating join" as that will match values with the rows they correspond to, ie. if your rows don't allign.
 These include: `left_join`,`right_join`, `inner_join` and `full_join`. 
@@ -195,7 +201,20 @@ Use the `by=` argument to specify the column(s) both data frames match on or a n
 Similarly, there are functions for rows. Such as `bind_rows`, `intersect`, `setdiff`, `union`.
 
 
+# Advantages and disadvantages of dplyr (and the "Tidy") system
 
+Pros:
+
+- Consistent grammar for extracting, filtering, viewing, and manipulating data tables.
+- [Verb-oriented data manipulation](https://dplyr.tidyverse.org/articles/base.html) what each processing step is aimed at doing
+- "Piping" approach makes it easier to build up operations one step at a time
+- Encourages copying data to a new data.frame when using mutations rather than modifying data in place, which can introduce errors in interactive analysis when lines of code are run out-of-order.
+
+Cons:
+
+- Function names, syntax, and defaults seem to change every few years, breaking old code.
+- Namespace conflicts with several standard R functions (`stats::filter`, `stats::lag`, `MASS::select`, `base::intersect`, `base::union`)
+- Extra syntax required for indirection, when you want to do something with a column whose name is stored in a variable rather than having to name the column directly. This happens for example when your script needs to select a column or create a new column but you don't know what the column is called until the script is run. 
 
 
 
