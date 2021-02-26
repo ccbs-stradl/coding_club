@@ -48,6 +48,7 @@ summary(mtcars)
 summarise(mtcars, avg=mean(mpg))
 
 # What's the best way to get the mean for all columns?
+sapply(mtcars, mean)
 ```
 
 <span style="color: darkblue;"> 
@@ -61,7 +62,7 @@ grouped_mtcars <- mtcars %>%
 grouped_mtcars
 ```
 
-Pipe operator `%>%` can be used to write tidy code. You can see that the above, with pipes, is easier to read than the following, without pipes:
+Pipe operator `%>%` (cmd + shift + m) can be used to write tidy code. You can see that the above, with pipes, is easier to read than the following, without pipes:
 ```{r}
 summarise(group_by(mtcars, cyl), avg = mean(mpg))
 ```
@@ -74,6 +75,8 @@ summarise(group_by(mtcars, cyl), avg = mean(mpg))
 </span>
 ```{r}
 filter(mtcars, mpg > 25)
+mtcars %>% 
+  filter(mpg > 25)
 ```
 
 <span style="color: darkblue;"> 
@@ -84,7 +87,9 @@ filter(mtcars, mpg > 25)
 # Return all unique items for "cyl" column
 distinct(mtcars, cyl)
 
-# How do you keep the cases from the other columns?
+mtcars %>% 
+  select(cyl, mpg) %>% 
+  distinct()
 
 # How can you ensure you're removing the correct duplicate cases? Presumbly it keeps the first unique case?
 ```
@@ -101,6 +106,7 @@ mtcars %>%
   slice((nrow(mtcars)-5):nrow(mtcars))
 
 # Is there a neater way of doing that?
+tail(mtcars)
 ```
 
 <span style="color: darkblue;"> 
@@ -121,6 +127,19 @@ top_n(mtcars, 5, mpg) %>%
 ```{r}
 select(mtcars, mpg, cyl)
 
+# Renaming columns
+mtcars %>% 
+  select(miles_per_gallon = mpg, cylinder = cyl)
+
+# Selecting columns based on names, eg. the first 4 cols without the 3rd col
+# Best not to select cols based on index number.
+mtcars %>% 
+  select(mpg:hp,-disp)
+
+# Everything function also very useful!
+mtcars %>% 
+  select(hp, everything())
+
 # To extract a column as a vector:
 pull(mtcars, mpg)
 ```
@@ -135,6 +154,9 @@ mutate(mtcars, gpm = 1/mpg)
 # Can input any vector, as long as it's the same length as number of rows in your data frame. eg:
 a_vector <- rep(1, nrow(mtcars))
 mutate(mtcars, random_vec = a_vector)
+
+# Or can just give it something shorter:
+mutate(mtcars, random_vec = 1)
 ```
 
 <span style="color: darkblue;"> 
@@ -143,6 +165,7 @@ mutate(mtcars, random_vec = a_vector)
 
 ```{r}
 transmute(mtcars, gpm = 1/mpg)
+# useful function to use to test things out on or to have a quick look at
 ```
 
 <span style="color: darkblue;"> 
@@ -154,12 +177,23 @@ The function to apply can either be supplied directly (`fun`) or as an anonymous
 ```{r}
 mutate_all(mtcars, ~.*100) # note the use of . in the lambda function
 
+mtcars %>% 
+  mutate_all(~.*100)
+
+# Note this lamda function is specific to dplyr, doesn't work in apply functions:
+# sapply(mtcars, ~ .*100)
+sapply(mtcars, function(x) x*100)
+
 # What if not all our columns were numeric? We can do this:
 mutate_if(mtcars, is.numeric, ~.*100)
 
 # What if you want to log transform a few variables for example.
 # eg. log transform the mpg and cyl columns only:
+# Note use of vars for multiple columns here.
+# When you type mutate_at into the console and R gives you a prompt ".vars" 
+# whereas other functions eg. select() gives you the prompt "..." which means it doesn't need the vars function
 mutate_at(mtcars, vars(c(mpg, cyl)) , log)
+
 
 ```
 
@@ -170,13 +204,14 @@ mutate_at(mtcars, vars(c(mpg, cyl)) , log)
 
 ```{r}
 rename(mtcars, miles_per_gallon=mpg)
+# can also do this with the select function
 
 # Be careful about names, avoid spaces. If you have have spaces use `` to enclose the variable name.
 rename(mtcars, `miles per gallon`=mpg) 
 ```
 
 ### Row names
-Be aware that if you have a variable stored as a row name then that you want to work with then you need to move it to a column. The `tibble` package has a function for this.
+Be aware that if you have a variable stored as a row name then if you want to work with then you need to move it to a column. The `tibble` package has a function for this.
 ```{r}
 rownames_to_column(datasets::mtcars, var="Car") 
 ```
