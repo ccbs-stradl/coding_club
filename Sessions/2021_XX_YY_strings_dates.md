@@ -295,7 +295,7 @@ search for. For example, to find diagnoses inthe `icd10` vector that
 start with “F”:
 
 ``` r
-grep("F", icd10)
+grep(pattern="F", x=icd10)
 ```
 
     ## [1] 1 2
@@ -325,7 +325,7 @@ grepl("F", icd10)
 
     ## [1]  TRUE  TRUE FALSE FALSE
 
-`grepl()` is therefore useful in things like `ifelse()` statements
+`grepl()` is therefore useful for things like `ifelse()` statements
 
 ``` r
 ifelse(grepl("F", icd10), yes='mental health', no='physical health')
@@ -335,7 +335,45 @@ ifelse(grepl("F", icd10), yes='mental health', no='physical health')
 
 ### String substitution (`gsub`)
 
+Finding and replace can be done with `sub()` (which will replace the
+first match) and `gsub()` (which will replace all matches).
+
+``` r
+sub(pattern="Head", replacement="Heid", x=classic_pub)
+```
+
+    ## [1] "The Sheep Heid Inn"
+
 ### String transformation (`toupper` and `tolower`)
+
+Capitals can be converted to lowercase and vice-versa:
+
+``` r
+tolower("BE QUIET!!")
+```
+
+    ## [1] "be quiet!!"
+
+``` r
+toupper("evertything looks like shouting when it's in allcaps")
+```
+
+    ## [1] "EVERTYTHING LOOKS LIKE SHOUTING WHEN IT'S IN ALLCAPS"
+
+String transformation and substitution can be useful for turning plain
+labels into variable names or filenames. For example, a list of names:
+
+``` r
+buildings <- c("Ashworth Laboratories", "7 George Square", "Kennedy Tower")
+building_labels <- tolower(gsub(" ", "_", buildings))
+building_labels
+```
+
+    ## [1] "ashworth_laboratories" "7_george_square"       "kennedy_tower"
+
+For a more advanced version of this, see the
+[snakecase](https://cran.r-project.org/web/packages/snakecase/vignettes/caseconverters.html)
+package.
 
 ### String separation (`strsplit`)
 
