@@ -51,7 +51,7 @@ as a command)
 echo "Hi, $USER, the date is $(date +%Y-%m-%d)"
 ```
 
-    ## Hi, mark, the date is 2021-02-23
+    ## Hi, mark, the date is 2021-02-26
 
 In R, strings are stored as type `character`
 
@@ -94,6 +94,112 @@ sample_sizes[[a]]
 
 String escapes
 --------------
+
+The majority of alphabetic, numeric, and punctuation characters are
+represented in a string just as they appear. Strings can also contain
+special characters take on a meaning other than a literal character.
+These are called “escape characters” (or, if they involve more than one
+character, “escape sequences”) and are prepended with `\` (backslash).
+The most common escape characters that you’ll encounter in data
+processing are:
+
+-   `\"` and `\'` to specify a double or single quote within a string.
+
+``` r
+"This double-quoted string needs to escape \"double\" quotes"
+```
+
+    ## [1] "This double-quoted string needs to escape \"double\" quotes"
+
+``` r
+'This single-quoted string needs to escape \'single\' quotes'
+```
+
+    ## [1] "This single-quoted string needs to escape 'single' quotes"
+
+-   `\n` for line breaks (newline)
+
+``` r
+string_with_newlines <- "This\nstring\nhas\nseveral\nlines."
+```
+
+-   `\t` for tabs
+
+``` r
+string_with_tabs <- "This\tstring\tis\ttab\tseparated"
+```
+
+-   `\u` and `\U` for Unicode characters.
+
+``` r
+string_with_unicode <- "\U0001f978"
+```
+
+Displaying strings
+==================
+
+When echoed in the terminal, strings in R will be output just as they
+appear in the source code, exactly as they were typed, including the
+escape characters. To print an interpreted version of the string to the
+screen, use the `cat()` function:
+
+**Newlines**
+
+``` r
+string_with_newlines
+```
+
+    ## [1] "This\nstring\nhas\nseveral\nlines."
+
+``` r
+cat(string_with_newlines)
+```
+
+    ## This
+    ## string
+    ## has
+    ## several
+    ## lines.
+
+**Tabs**
+
+``` r
+string_with_tabs
+```
+
+    ## [1] "This\tstring\tis\ttab\tseparated"
+
+``` r
+cat(string_with_tabs)
+```
+
+    ## This string  is  tab separated
+
+**Unicode**
+
+``` r
+string_with_unicode
+```
+
+    ## [1] "\U0001f978"
+
+``` r
+cat(string_with_unicode)
+```
+
+    ## 🥸
+
+``` r
+"💀👻🐶🐱"
+```
+
+    ## [1] "\U0001f480\U0001f47b\U0001f436\U0001f431"
+
+``` r
+cat("💀👻🐶🐱")
+```
+
+    ## 💀👻🐶🐱
 
 Built-in commands
 -----------------

@@ -51,6 +51,51 @@ sample_sizes[[a]]
 
 ## String escapes
 
+The majority of alphabetic, numeric, and punctuation characters are represented in a string just as they appear. Strings can also contain special characters take on a meaning other than a literal character. These are called "escape characters" (or, if they involve more than one character, "escape sequences") and are prepended with `\` (backslash). The most common escape characters that you'll encounter in data processing are:
+
+- `\"` and `\'` to specify a double or single quote within a string.
+```{r}
+"This double-quoted string needs to escape \"double\" quotes"
+'This single-quoted string needs to escape \'single\' quotes'
+```
+- `\n` for line breaks (newline)
+```{r}
+string_with_newlines <- "This\nstring\nhas\nseveral\nlines."
+```
+- `\t` for tabs
+```{r}
+string_with_tabs <- "This\tstring\tis\ttab\tseparated"
+```
+- `\u` and `\U` for Unicode characters.
+```{r}
+string_with_unicode <- "\U0001f978"
+```
+
+
+# Displaying strings
+
+When echoed in the terminal, strings in R will be output just as they appear in the source code, exactly as they were typed, including the escape characters. To print an interpreted version of the string to the screen, use the `cat()` function:
+
+**Newlines**
+```{r}
+string_with_newlines
+cat(string_with_newlines)
+```
+
+**Tabs**
+```{r}
+string_with_tabs
+cat(string_with_tabs)
+```
+
+**Unicode**
+```{r}
+string_with_unicode
+cat(string_with_unicode)
+"💀👻🐶🐱"
+cat("💀👻🐶🐱")
+```
+
 ## Built-in commands
 
 Three common operations that it is worthwhile knowing the built-in commands for are counting, subsetting, splitting, and combining strings.
