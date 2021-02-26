@@ -204,7 +204,7 @@ cat("💀👻🐶🐱")
 Built-in commands
 -----------------
 
-Three common operations that it is worthwhile knowing the built-in
+Four common operations that it is worthwhile knowing the built-in
 commands for are counting, subsetting, splitting, and combining strings.
 
 ### Getting information about strings (`nchar`)
@@ -269,6 +269,69 @@ classic_pub
     ## [1] "The Sheep Heid Inn"
 
 ### Cleaning up whitespace (`trimws`)
+
+Extraneous whitespace is usually not a problem in well-curated datasets,
+but it can crop up in older and ad-hoc files, particularly when data has
+been copied and pasted into a spreadsheet. `trimws()` can be used to
+*trim* whitespace at the start or end of a string
+
+``` r
+icd10_with_ws <- c("F41 ", " F32", "I11  ", "   E112")
+trimws(icd10_with_ws)
+```
+
+    ## [1] "F41"  "F32"  "I11"  "E112"
+
+### Finding strings (`grep`)
+
+Strings can be searched with `grep()` (\_g\_lobally search for a
+\_r\_egular \_e\_xpression and \_p\_rint matching lines). For now we
+will just search for string literals. In a future session, we will look
+at more flexible searching using regular expressions.
+
+Unlike most commands, the object that `grep()` operates on (a character
+vector) is the second argument. The first argument is the thing being
+search for. For example, to find diagnoses inthe `icd10` vector that
+start with “F”:
+
+``` r
+grep("F", icd10)
+```
+
+    ## [1] 1 2
+
+Grep returns the indices of the elements that match, so it can be used
+to subset the array being searched through
+
+``` r
+icd10[grep("F", icd10)]
+```
+
+    ## [1] "F410" "F322"
+
+A shortcut for doing the same thing is with the `value=TRUE` argument
+
+``` r
+grep("F", icd10, value=TRUE)
+```
+
+    ## [1] "F410" "F322"
+
+`grepl()` returns `TRUE` or `FALSE` for each match
+
+``` r
+grepl("F", icd10)
+```
+
+    ## [1]  TRUE  TRUE FALSE FALSE
+
+`grepl()` is therefore useful in things like `ifelse()` statements
+
+``` r
+ifelse(grepl("F", icd10), yes='mental health', no='physical health')
+```
+
+    ## [1] "mental health"   "mental health"   "physical health" "physical health"
 
 ### String substitution (`gsub`)
 
