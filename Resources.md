@@ -21,7 +21,8 @@
 ### Statistics & Coding:
 * [Coding club](https://ourcodingclub.github.io/tutorials.html) in Edinburgh by the ecology and environmental science department.
   * Made a set of tutorials to “replace statistics anxiety and code fear with inspiration and motivation to learn”.
-
+* [R for Data Science](https://r4ds.had.co.nz/index.html)
+  * "Learn how to get your data into R, get it into the most useful structure, transform it, visualise it and model it." 
 
 ### Coursera Coding Courses:
 * [R Programming](https://www.coursera.org/learn/r-programming)
