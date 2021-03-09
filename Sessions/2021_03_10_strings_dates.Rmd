@@ -96,11 +96,11 @@ cat(string_with_unicode)
 cat("💀👻🐶🐱")
 ```
 
-## Built-in commands
+# Built-in commands
 
 Four common operations that it is worthwhile knowing the built-in commands for are counting, subsetting, splitting, and combining strings.
 
-### Getting information about strings (`nchar`)
+## Getting information about strings (`nchar`)
 
 The number of characters in a string can be calculated with `nchar`
 
@@ -114,7 +114,7 @@ nchar(c("hello", "abracadabra"))
 
 **Quick question**: What information is `length("hello")` returning?
 
-### Subsetting strings (`substr`)
+## Subsetting strings (`substr`)
 
 Parts of a string can be extracted by character position using `subtr` (substring). The third, fourth, and fifth characters of the word "hello" can be extracted with
 ```{r}
@@ -137,7 +137,7 @@ substr(classic_pub, 13, 13) <- 'i'
 classic_pub
 ```
 
-### Cleaning up whitespace (`trimws`)
+## Cleaning up whitespace (`trimws`)
 
 Extraneous whitespace is usually not a problem in well-curated datasets, but it can crop up in older and ad-hoc files, particularly when data has been copied and pasted into a spreadsheet. `trimws()` can be used to _trim_ whitespace at the start or end of a string
 
@@ -146,7 +146,7 @@ icd10_with_ws <- c("F41 ", " F32", "I11  ", "   E112")
 trimws(icd10_with_ws)
 ```
 
-### Finding strings (`grep`)
+## Finding strings (`grep`)
 
 Strings can be searched with `grep()` (_g_lobally search for a _r_egular _e_xpression and _p_rint matching lines). For now we will just search for string literals. In a future session, we will look at more flexible searching using regular expressions. 
 
@@ -173,7 +173,7 @@ grepl("F", icd10)
 ifelse(grepl("F", icd10), yes='mental health', no='physical health')
 ```
 
-### String substitution (`gsub`)
+## String substitution (`gsub`)
 
 Finding and replace can be done with `sub()` (which will replace the first match) and `gsub()` (which will replace all matches).
 
@@ -181,7 +181,7 @@ Finding and replace can be done with `sub()` (which will replace the first match
 sub(pattern="Head", replacement="Heid", x=classic_pub)
 ```
 
-### String transformation (`toupper` and `tolower`)
+## String transformation (`toupper` and `tolower`)
 
 Capitals can be converted to lowercase and vice-versa:
 
@@ -198,15 +198,102 @@ building_labels <- tolower(gsub(" ", "_", buildings))
 building_labels
 ```
 
-
-
 For a more advanced version of this, see the [snakecase](https://cran.r-project.org/web/packages/snakecase/vignettes/caseconverters.html) package.
 
-### String separation (`strsplit`)
+## String separation (`strsplit`)
 
-### String concatenation (`paste`)
+A string can be divided into parts based on a specified `split` sequence. For example, splitting a sentence into separate words. 
 
-## Tidyverse: `stringr`
+```{r}
+strsplit("The quick brown fox jumps over the lazy dog", split=" ")
+```
+
+It can be useful for extracting parts of strings that are formatted in a uniform way.
+```{r}
+sessions <- c('2020-09-30', '2020-10-23', '2020-10-28', '2020-11-11', '2020-12-09', '2021-01-27', '2021-02-24', '2021-03-10')
+sessions_ymd <- strsplit(sessions, split='-')
+sessions_ymd
+```
+
+`strsplit` returns a list of character vectors. 
+
+## String concatenation (`paste`)
+
+Strings can be combined together using paste.
+```{r}
+paste('This', 'is', 'a', 'sentence.')
+```
+By default the combined strings will be separated by a space but this can be changed with the `sep` argument.
+
+```{r}
+paste('2020', '09', '30', sep='-')
+```
+
+The arguments can also be vectors to produce multiple output strings
+
+```{r}
+paste(c('2020', '2021'), c('09', '02'), c('30', '24'), sep='-')
+```
+Note how the first elements of each input get combined together, then the second element of each input. If the inputs are of different lengths, the shorter ones will be recycled. This is useful for example when you need to add a prefix to a vector of strings:
+```{r}
+paste('chr', 1:22, sep='')
+```
+The vector of strings output by `paste` can themselves be concatenated together using the `collapse` argument
+```{r}
+paste(c('2020', '2021'), c('09', '02'), c('30', '24'), sep='-', collapse=', ')
+```
+
+A useful shortcut for `paste(..., sep='')` in the common instance where you don't want the elements to be separated by a character is `paste0(...)`
+```{r}
+paste0('chr', 1:22)
+```
+
+# Tidyverse: `stringr` and `tidyr`
+
+The built-in string manipulation functions can be a bit clunky to work with because they don't all follow the same argument ordering conventions. Some functions are of the form `f(string, pattern)` while others are of the form `f(pattern, string)`. The [`stringr`](https://stringr.tidyverse.org) package is a great alternative because all the functions follow the format `f(string, pattern)`
+
+```{r}
+library(stringr)
+```
+
+Built-in                            | `stringr`
+----------------------------------- | ------------------------------
+`substr(string, start, stop)`       | `str_sub(string, start, stop)`
+`trimws(str, which='both')`         | `str_trim(str)`
+`grep(pattern, string)`             | `str_which(string, pattern)`
+`grepl(pattern, string)`            | `str_detect(string, pattern)`
+`grep(pattern, string, value=TRUE)` | `str_match(string, pattern)`
+`sub(pattern, replacement, string)` | `str_replace(string, pattern, replacement)`
+`toupper(string)`                   | `str_to_upper(string)`
+`tolower(string)`                   | `str_to_lower(string)`
+`strsplit(string, split)`           | `str_split(string, pattern)`
+`paste(string, sep, collapse)`      | `str_c(string, sep, collapase)`
+
+**Exercise**: revise these built-in commands with their `stringr` equivalents
+```r
+substr("hello", start=3, stop=5)
+trimws(icd10_with_ws) 
+grep("F", icd10, value=TRUE)
+sub(pattern="Head", replacement="Heid", x=classic_pub)
+strsplit("The quick brown fox jumps over the lazy dog", split=" ")
+paste('2020', '09', '30', sep='-')
+```
+
+## String interpolation: `str_glue`
+
+Another feature that comes with the `stringr` package is interpolation, where part of a string is substituted with the value from a variable. The variable is specified by surrounding in curly braces `{varname}`:
+
+```{r}
+session_name = 'Strings and Dates'
+str_glue("This coding club is the {session_name} session.")
+```
+
+`str_glue_data` can be used to create interpolated strings where the variable values are pipped from a `data.frame` or `tibble`
+```{r}
+mtcars_tb <- tibble::as_tibble(mtcars, rownames='car')
+mtcars_tb %>% str_glue_data("The {car} gets {mpg} miles per gallon.")
+```
+
 
 # Parsing dates (`lubridate`)
 

@@ -51,7 +51,7 @@ as a command)
 echo "Hi, $USER, the date is $(date +%Y-%m-%d)"
 ```
 
-    ## Hi, mark, the date is 2021-02-26
+    ## Hi, mark, the date is 2021-03-09
 
 In R, strings are stored as type `character`
 
@@ -202,12 +202,13 @@ cat("💀👻🐶🐱")
     ## 💀👻🐶🐱
 
 Built-in commands
------------------
+=================
 
 Four common operations that it is worthwhile knowing the built-in
 commands for are counting, subsetting, splitting, and combining strings.
 
-### Getting information about strings (`nchar`)
+Getting information about strings (`nchar`)
+-------------------------------------------
 
 The number of characters in a string can be calculated with `nchar`
 
@@ -227,7 +228,8 @@ nchar(c("hello", "abracadabra"))
 
 **Quick question**: What information is `length("hello")` returning?
 
-### Subsetting strings (`substr`)
+Subsetting strings (`substr`)
+-----------------------------
 
 Parts of a string can be extracted by character position using `subtr`
 (substring). The third, fourth, and fifth characters of the word “hello”
@@ -268,7 +270,8 @@ classic_pub
 
     ## [1] "The Sheep Heid Inn"
 
-### Cleaning up whitespace (`trimws`)
+Cleaning up whitespace (`trimws`)
+---------------------------------
 
 Extraneous whitespace is usually not a problem in well-curated datasets,
 but it can crop up in older and ad-hoc files, particularly when data has
@@ -282,7 +285,8 @@ trimws(icd10_with_ws)
 
     ## [1] "F41"  "F32"  "I11"  "E112"
 
-### Finding strings (`grep`)
+Finding strings (`grep`)
+------------------------
 
 Strings can be searched with `grep()` (\_g\_lobally search for a
 \_r\_egular \_e\_xpression and \_p\_rint matching lines). For now we
@@ -333,7 +337,8 @@ ifelse(grepl("F", icd10), yes='mental health', no='physical health')
 
     ## [1] "mental health"   "mental health"   "physical health" "physical health"
 
-### String substitution (`gsub`)
+String substitution (`gsub`)
+----------------------------
 
 Finding and replace can be done with `sub()` (which will replace the
 first match) and `gsub()` (which will replace all matches).
@@ -344,7 +349,8 @@ sub(pattern="Head", replacement="Heid", x=classic_pub)
 
     ## [1] "The Sheep Heid Inn"
 
-### String transformation (`toupper` and `tolower`)
+String transformation (`toupper` and `tolower`)
+-----------------------------------------------
 
 Capitals can be converted to lowercase and vice-versa:
 
@@ -375,12 +381,210 @@ For a more advanced version of this, see the
 [snakecase](https://cran.r-project.org/web/packages/snakecase/vignettes/caseconverters.html)
 package.
 
-### String separation (`strsplit`)
+String separation (`strsplit`)
+------------------------------
 
-### String concatenation (`paste`)
+A string can be divided into parts based on a specified `split`
+sequence. For example, splitting a sentence into separate words.
 
-Tidyverse: `stringr`
---------------------
+``` r
+strsplit("The quick brown fox jumps over the lazy dog", split=" ")
+```
+
+    ## [[1]]
+    ## [1] "The"   "quick" "brown" "fox"   "jumps" "over"  "the"   "lazy"  "dog"
+
+It can be useful for extracting parts of strings that are formatted in a
+uniform way.
+
+``` r
+sessions <- c('2020-09-30', '2020-10-23', '2020-10-28', '2020-11-11', '2020-12-09', '2021-01-27', '2021-02-24', '2021-03-10')
+sessions_ymd <- strsplit(sessions, split='-')
+sessions_ymd
+```
+
+    ## [[1]]
+    ## [1] "2020" "09"   "30"  
+    ## 
+    ## [[2]]
+    ## [1] "2020" "10"   "23"  
+    ## 
+    ## [[3]]
+    ## [1] "2020" "10"   "28"  
+    ## 
+    ## [[4]]
+    ## [1] "2020" "11"   "11"  
+    ## 
+    ## [[5]]
+    ## [1] "2020" "12"   "09"  
+    ## 
+    ## [[6]]
+    ## [1] "2021" "01"   "27"  
+    ## 
+    ## [[7]]
+    ## [1] "2021" "02"   "24"  
+    ## 
+    ## [[8]]
+    ## [1] "2021" "03"   "10"
+
+`strsplit` returns a list of character vectors.
+
+String concatenation (`paste`)
+------------------------------
+
+Strings can be combined together using paste.
+
+``` r
+paste('This', 'is', 'a', 'sentence.')
+```
+
+    ## [1] "This is a sentence."
+
+By default the combined strings will be separated by a space but this
+can be changed with the `sep` argument.
+
+``` r
+paste('2020', '09', '30', sep='-')
+```
+
+    ## [1] "2020-09-30"
+
+The arguments can also be vectors to produce multiple output strings
+
+``` r
+paste(c('2020', '2021'), c('09', '02'), c('30', '24'), sep='-')
+```
+
+    ## [1] "2020-09-30" "2021-02-24"
+
+Note how the first elements of each input get combined together, then
+the second element of each input. If the inputs are of different
+lengths, the shorter ones will be recycled. This is useful for example
+when you need to add a prefix to a vector of strings:
+
+``` r
+paste('chr', 1:22, sep='')
+```
+
+    ##  [1] "chr1"  "chr2"  "chr3"  "chr4"  "chr5"  "chr6"  "chr7"  "chr8"  "chr9" 
+    ## [10] "chr10" "chr11" "chr12" "chr13" "chr14" "chr15" "chr16" "chr17" "chr18"
+    ## [19] "chr19" "chr20" "chr21" "chr22"
+
+The vector of strings output by `paste` can themselves be concatenated
+together using the `collapse` argument
+
+``` r
+paste(c('2020', '2021'), c('09', '02'), c('30', '24'), sep='-', collapse=', ')
+```
+
+    ## [1] "2020-09-30, 2021-02-24"
+
+A useful shortcut for `paste(..., sep='')` in the common instance where
+you don’t want the elements to be separated by a character is
+`paste0(...)`
+
+``` r
+paste0('chr', 1:22)
+```
+
+    ##  [1] "chr1"  "chr2"  "chr3"  "chr4"  "chr5"  "chr6"  "chr7"  "chr8"  "chr9" 
+    ## [10] "chr10" "chr11" "chr12" "chr13" "chr14" "chr15" "chr16" "chr17" "chr18"
+    ## [19] "chr19" "chr20" "chr21" "chr22"
+
+Tidyverse: `stringr` and `tidyr`
+================================
+
+The built-in string manipulation functions can be a bit clunky to work
+with because they don’t all follow the same argument ordering
+conventions. Some functions are of the form `f(string, pattern)` while
+others are of the form `f(pattern, string)`. The
+[`stringr`](https://stringr.tidyverse.org) package is a great
+alternative because all the functions follow the format
+`f(string, pattern)`
+
+``` r
+library(stringr)
+```
+
+| Built-in                            | `stringr`                                   |
+|-------------------------------------|---------------------------------------------|
+| `substr(string, start, stop)`       | `str_sub(string, start, stop)`              |
+| `trimws(str, which='both')`         | `str_trim(str)`                             |
+| `grep(pattern, string)`             | `str_which(string, pattern)`                |
+| `grepl(pattern, string)`            | `str_detect(string, pattern)`               |
+| `grep(pattern, string, value=TRUE)` | `str_match(string, pattern)`                |
+| `sub(pattern, replacement, string)` | `str_replace(string, pattern, replacement)` |
+| `toupper(string)`                   | `str_to_upper(string)`                      |
+| `tolower(string)`                   | `str_to_lower(string)`                      |
+| `strsplit(string, split)`           | `str_split(string, pattern)`                |
+| `paste(string, sep, collapse)`      | `str_c(string, sep, collapase)`             |
+
+**Exercise**: revise these built-in commands with their `stringr`
+equivalents
+
+``` r
+substr("hello", start=3, stop=5)
+trimws(icd10_with_ws) 
+grep("F", icd10, value=TRUE)
+sub(pattern="Head", replacement="Heid", x=classic_pub)
+strsplit("The quick brown fox jumps over the lazy dog", split=" ")
+paste('2020', '09', '30', sep='-')
+```
+
+String interpolation: `str_glue`
+--------------------------------
+
+Another feature that comes with the `stringr` package is interpolation,
+where part of a string is substituted with the value from a variable.
+The variable is specified by surrounding in curly braces `{varname}`:
+
+``` r
+session_name = 'Strings and Dates'
+str_glue("This coding club is the {session_name} session.")
+```
+
+    ## This coding club is the Strings and Dates session.
+
+`str_glue_data` can be used to create interpolated strings where the
+variable values are pipped from a `data.frame` or `tibble`
+
+``` r
+mtcars_tb <- tibble::as_tibble(mtcars, rownames='car')
+mtcars_tb %>% str_glue_data("The {car} gets {mpg} miles per gallon.")
+```
+
+    ## The Mazda RX4 gets 21 miles per gallon.
+    ## The Mazda RX4 Wag gets 21 miles per gallon.
+    ## The Datsun 710 gets 22.8 miles per gallon.
+    ## The Hornet 4 Drive gets 21.4 miles per gallon.
+    ## The Hornet Sportabout gets 18.7 miles per gallon.
+    ## The Valiant gets 18.1 miles per gallon.
+    ## The Duster 360 gets 14.3 miles per gallon.
+    ## The Merc 240D gets 24.4 miles per gallon.
+    ## The Merc 230 gets 22.8 miles per gallon.
+    ## The Merc 280 gets 19.2 miles per gallon.
+    ## The Merc 280C gets 17.8 miles per gallon.
+    ## The Merc 450SE gets 16.4 miles per gallon.
+    ## The Merc 450SL gets 17.3 miles per gallon.
+    ## The Merc 450SLC gets 15.2 miles per gallon.
+    ## The Cadillac Fleetwood gets 10.4 miles per gallon.
+    ## The Lincoln Continental gets 10.4 miles per gallon.
+    ## The Chrysler Imperial gets 14.7 miles per gallon.
+    ## The Fiat 128 gets 32.4 miles per gallon.
+    ## The Honda Civic gets 30.4 miles per gallon.
+    ## The Toyota Corolla gets 33.9 miles per gallon.
+    ## The Toyota Corona gets 21.5 miles per gallon.
+    ## The Dodge Challenger gets 15.5 miles per gallon.
+    ## The AMC Javelin gets 15.2 miles per gallon.
+    ## The Camaro Z28 gets 13.3 miles per gallon.
+    ## The Pontiac Firebird gets 19.2 miles per gallon.
+    ## The Fiat X1-9 gets 27.3 miles per gallon.
+    ## The Porsche 914-2 gets 26 miles per gallon.
+    ## The Lotus Europa gets 30.4 miles per gallon.
+    ## The Ford Pantera L gets 15.8 miles per gallon.
+    ## The Ferrari Dino gets 19.7 miles per gallon.
+    ## The Maserati Bora gets 15 miles per gallon.
+    ## The Volvo 142E gets 21.4 miles per gallon.
 
 Parsing dates (`lubridate`)
 ===========================
