@@ -517,7 +517,7 @@ library(stringr)
 | `toupper(string)`                   | `str_to_upper(string)`                      |
 | `tolower(string)`                   | `str_to_lower(string)`                      |
 | `strsplit(string, split)`           | `str_split(string, pattern)`                |
-| `paste(string, sep, collapse)`      | `str_c(string, sep, collapase)`             |
+| `paste(string, sep, collapse)`      | `str_c(string, sep, collapse)`              |
 
 **Exercise**: revise these built-in commands with their `stringr`
 equivalents
@@ -644,6 +644,16 @@ as they appear in the order year–month–day.
 
 ``` r
 library(lubridate)
+```
+
+    ## 
+    ## Attaching package: 'lubridate'
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     date, intersect, setdiff, union
+
+``` r
 ymd("2021/03/10")
 ```
 

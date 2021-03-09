@@ -267,7 +267,7 @@ Built-in                            | `stringr`
 `toupper(string)`                   | `str_to_upper(string)`
 `tolower(string)`                   | `str_to_lower(string)`
 `strsplit(string, split)`           | `str_split(string, pattern)`
-`paste(string, sep, collapse)`      | `str_c(string, sep, collapase)`
+`paste(string, sep, collapse)`      | `str_c(string, sep, collapse)`
 
 **Exercise**: revise these built-in commands with their `stringr` equivalents
 ```r
