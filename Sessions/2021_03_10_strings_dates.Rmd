@@ -295,5 +295,99 @@ mtcars_tb %>% str_glue_data("The {car} gets {mpg} miles per gallon.")
 ```
 
 
-# Parsing dates (`lubridate`)
+# Working with dates (`lubridate`)
 
+One of the most common types of string data to encounter in research are dates. When dates are formatted in a uniform way, some information can be extracted using the string tools we've alredy seen:
+
+```{r}
+session_years <- as.numeric(sapply(str_split(sessions, pattern='-'), dplyr::first))
+session_years
+```
+
+Dates are also important as the basis of calculations. For example, we might be interested in knowing how much time has passed between a baseline and repeat assessment, or we might want to group dates together to define hospitalisation or prescribing episodes. Date information in R can be stored in `Date` objects. The `lubridate` package adds additional functionality for parsing character data into `Date`s and doing calculations that properly handle parculiarities like leap years and time zones.
+
+## Creating date objects and parsing dates
+
+Under the the hood, dates are stored as number of days since January 1st, 1970 (the "[Unix epoch]"(https://en.wikipedia.org/wiki/Unix_time)). An object holding date/time information can be created with `ISOdate()``
+
+```{r}
+ISOdate(year=2021, month=3, day=10)
+```
+
+A basic date object can also be automatically parsed from a string that is formatted as `YYYY/MM/DD` or `YYYY-MM-DD`
+
+```{r}
+as.Date("2021/03/10")
+as.Date("2021-03-10")
+```
+
+Lubridate has a similar function `ymd()` that is less picky about punctuation separating the different parts of the date string, as long as they appear in the order year–month–day.
+
+```{r}
+library(lubridate)
+ymd("2021/03/10")
+ymd("2021-03-10")
+ymd("2021 03 10")
+ymd("20210310")
+```
+
+Lubridate has other convenience functions if the date information is in a different order
+```{r}
+dmy("10/03/2021")
+mdy("03/10/2021")
+```
+
+If the date information is not as nicely structured, it can be extracted using  `parse_date_time()`. This function's second argument is an `orders` vector of string encoding the different ordering and formatting of date information to look for. The orders string uses single or dual characters to encode the formatting of the date information:
+
+- `a` Abbreviated weekday name in the current locale. (Also matches full name)
+- `A` Full weekday name in the current locale.  (Also matches abbreviated name).
+- `b` Abbreviated or full month name in the current locale.
+- `d` Day of the month as decimal number (01-31 or 0-31)
+- `m` Month as decimal number (01-12 or 1-12). 
+- `w` Weekday as decimal number (0-6, Sunday is 0).
+- `y` Year without century (00-99 or 0-99).
+- `Y` Year with century.
+- `Om` Matches numeric month and English alphabetic months (Both, long and abbreviated forms).
+
+```{r}
+parse_date_time("2021-03-10", orders="Ymd")
+parse_date_time("Mar 10th 2021", orders="bmY")
+parse_date_time("10 March 21", orders="dby")
+```
+
+If a vector of parsing orders are passed, the function will try each of the options
+```{r}
+parse_date_time(c("2021-03-10","Mar 10th 2021", "10 March 21", "Jan 1st 1970"), orders=c("bmY", "dby", "Ymd"))
+```
+
+## Calculations with dates
+
+Once you have two dates, you can use subtraction to get the difference between them.
+
+```{r}
+unix_epoch = ymd("1970-01-01")
+string_session = ymd("2021-03-10")
+string_session - unix_epoch
+```
+
+Two dates can also define an **interval**
+```{r}
+epoch_session <- interval(unix_epoch, string_session)
+epoch_session
+```
+
+An interval can be divided by a duration to convert them to a different unit. How many minutes between today and the Unix epoch?
+```{r}
+epoch_session / dminutes(1)
+```
+Or years?
+```{r}
+epoch_session / dyears(1)
+```
+
+**NB**: Lubridate has two ways of interpreting the length of an `interval()`: a _duration_ repesents absolute differences in time (a day is always 24 hours, a year is always 365 days) while a _period_ represents time in a way that respects how calendars account for them (some years are 366 days, etc). For _period_ the functions are plural time units while the equivalent _duration_ functions are prefixed with `d`
+
+```{r}
+string_session + months(1)
+string_session + dmonths(1)
+``` 
