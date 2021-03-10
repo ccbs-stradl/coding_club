@@ -1,8 +1,8 @@
 String manipulation and date parsing
 ================
 
-*Aim: Learn how to extract information from strings (text and character
-data) using regular expressions*
+*Aim: Learn how to process strings (text and character data) and parse
+dates*
 
 We will look at some built-in fucntions for working with strings
 (`substr`, `strsplit`, `paste`) as well as their Tidy equivalents from
@@ -51,7 +51,7 @@ as a command)
 echo "Hi, $USER, the date is $(date +%Y-%m-%d)"
 ```
 
-    ## Hi, mark, the date is 2021-03-09
+    ## Hi, mark, the date is 2021-03-10
 
 In R, strings are stored as type `character`
 
@@ -644,16 +644,6 @@ as they appear in the order year–month–day.
 
 ``` r
 library(lubridate)
-```
-
-    ## 
-    ## Attaching package: 'lubridate'
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     date, intersect, setdiff, union
-
-``` r
 ymd("2021/03/10")
 ```
 

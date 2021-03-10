@@ -3,7 +3,7 @@ title: "String manipulation and date parsing"
 output: github_document
 ---
 
-*Aim: Learn how to extract information from strings (text and character data) using regular expressions*
+*Aim: Learn how to process strings (text and character data) and parse dates*
 
 We will look at some built-in fucntions for working with strings (`substr`, `strsplit`, `paste`) as well as their Tidy equivalents from the [`tidyr`](https://tidyr.tidyverse.org) and [`stringr`](https://stringr.tidyverse.org) packages. See also: [R For Data Science Chapter 14: Strings](https://r4ds.had.co.nz/strings.html).
 
