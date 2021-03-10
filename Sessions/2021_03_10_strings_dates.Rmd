@@ -7,6 +7,8 @@ output: github_document
 
 We will look at some built-in fucntions for working with strings (`substr`, `strsplit`, `paste`) as well as their Tidy equivalents from the [`tidyr`](https://tidyr.tidyverse.org) and [`stringr`](https://stringr.tidyverse.org) packages. See also: [R For Data Science Chapter 14: Strings](https://r4ds.had.co.nz/strings.html).
 
+[Link to coding club session](https://uoe.sharepoint.com/sites/DepressionResearch/Shared%20Documents/Coding%20club/Coding%20club%20recordings%20&%20slides/2021_03_19_strings_dates.mp4) for those with access to Psychiatry Department Microsoft Teams.
+
 # String manipulation
 
 A "string" is a sequence of symbols. In computer languages, strings are typically a data structure for storing text information as a sequence of letters, numbers, punctuation, and other language symbols. In R and most programming languages, strings are demarcated by surrounding them by single `'` or double `"` quotation marks.
