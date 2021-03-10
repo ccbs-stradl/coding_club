@@ -67,7 +67,11 @@ vectors and lists (including `data.frame`s). E.g., a named vector:
 
 ``` r
 sample_sizes <- c(cases=11795, controls=14084)
+sample_sizes
 ```
+
+    ##    cases controls 
+    ##    11795    14084
 
 The elements can either be indexed with string *literals*
 
@@ -97,11 +101,11 @@ String escapes
 
 The majority of alphabetic, numeric, and punctuation characters are
 represented in a string just as they appear. Strings can also contain
-special characters take on a meaning other than a literal character.
-These are called “escape characters” (or, if they involve more than one
-character, “escape sequences”) and are prepended with `\` (backslash).
-The most common escape characters that you’ll encounter in data
-processing are:
+special characters that take on a meaning other than a literal
+character. These are called “escape characters” (or, if they involve
+more than one character, “escape sequences”) and are prepended with `\`
+(backslash). The most common escape characters that you’ll encounter in
+data processing are:
 
 -   `\"` and `\'` to specify a double or single quote within a string.
 
@@ -141,7 +145,7 @@ Displaying strings
 When echoed in the terminal, strings in R will be output just as they
 appear in the source code, exactly as they were typed, including the
 escape characters. To print an interpreted version of the string to the
-screen, use the `cat()` function:
+screen, use the `cat()` (“concatenate and print”) function:
 
 **Newlines**
 
@@ -204,8 +208,9 @@ cat("💀👻🐶🐱")
 Built-in commands
 =================
 
-Four common operations that it is worthwhile knowing the built-in
-commands for are counting, subsetting, splitting, and combining strings.
+Five common operations that it is worthwhile knowing the built-in
+commands for are counting, subsetting, splitting, searching, and
+combining strings.
 
 Getting information about strings (`nchar`)
 -------------------------------------------
@@ -509,10 +514,10 @@ library(stringr)
 | Built-in                            | `stringr`                                   |
 |-------------------------------------|---------------------------------------------|
 | `substr(string, start, stop)`       | `str_sub(string, start, stop)`              |
-| `trimws(str, which='both')`         | `str_trim(str)`                             |
+| `trimws(string, which='both')`      | `str_trim(string)`                          |
 | `grep(pattern, string)`             | `str_which(string, pattern)`                |
 | `grepl(pattern, string)`            | `str_detect(string, pattern)`               |
-| `grep(pattern, string, value=TRUE)` | `str_match(string, pattern)`                |
+| `grep(pattern, string, value=TRUE)` | `str_subset(string, pattern)`               |
 | `sub(pattern, replacement, string)` | `str_replace(string, pattern, replacement)` |
 | `toupper(string)`                   | `str_to_upper(string)`                      |
 | `tolower(string)`                   | `str_to_lower(string)`                      |
@@ -708,16 +713,22 @@ parse_date_time("2021-03-10", orders="Ymd")
     ## [1] "2021-03-10 UTC"
 
 ``` r
-parse_date_time("Mar 10th 2021", orders="bmY")
+parse_date_time("Mar 10th 2021", orders="bdY")
 ```
 
-    ## [1] "2021-10-01 UTC"
+    ## [1] "2021-03-10 UTC"
 
 ``` r
 parse_date_time("10 March 21", orders="dby")
 ```
 
     ## [1] "2021-03-10 UTC"
+
+``` r
+parse_date_time("2021-03", orders="Ym")
+```
+
+    ## [1] "2021-03-01 UTC"
 
 If a vector of parsing orders are passed, the function will try each of
 the options
