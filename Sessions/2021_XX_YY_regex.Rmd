@@ -1,6 +1,0 @@
----
-title: "Regular expressions: finding and extracting information from strings"
-output: github_document
----
-
-Given a particular string...
