@@ -10,8 +10,11 @@ the [`tidyr`](https://tidyr.tidyverse.org) and
 [`stringr`](https://stringr.tidyverse.org) packages. See also: [R For
 Data Science Chapter 14: Strings](https://r4ds.had.co.nz/strings.html).
 
-String manipulation
-===================
+[Link to coding club
+session](https://uoe.sharepoint.com/sites/DepressionResearch/Shared%20Documents/Coding%20club/Coding%20club%20recordings%20&%20slides/2021_03_19_strings_dates.mp4)
+for those with access to Psychiatry Department Microsoft Teams.
+
+# String manipulation
 
 A “string” is a sequence of symbols. In computer languages, strings are
 typically a data structure for storing text information as a sequence of
@@ -51,7 +54,7 @@ as a command)
 echo "Hi, $USER, the date is $(date +%Y-%m-%d)"
 ```
 
-    ## Hi, mark, the date is 2021-03-10
+    ## Hi, aes, the date is 2021-03-10
 
 In R, strings are stored as type `character`
 
@@ -96,8 +99,7 @@ sample_sizes[[a]]
 
     ## [1] 11795
 
-String escapes
---------------
+## String escapes
 
 The majority of alphabetic, numeric, and punctuation characters are
 represented in a string just as they appear. Strings can also contain
@@ -107,7 +109,9 @@ more than one character, “escape sequences”) and are prepended with `\`
 (backslash). The most common escape characters that you’ll encounter in
 data processing are:
 
--   `\"` and `\'` to specify a double or single quote within a string.
+  - `\"` and `\'` to specify a double or single quote within a string.
+
+<!-- end list -->
 
 ``` r
 "This double-quoted string needs to escape \"double\" quotes"
@@ -121,26 +125,31 @@ data processing are:
 
     ## [1] "This single-quoted string needs to escape 'single' quotes"
 
--   `\n` for line breaks (newline)
+  - `\n` for line breaks (newline)
+
+<!-- end list -->
 
 ``` r
 string_with_newlines <- "This\nstring\nhas\nseveral\nlines."
 ```
 
--   `\t` for tabs
+  - `\t` for tabs
+
+<!-- end list -->
 
 ``` r
 string_with_tabs <- "This\tstring\tis\ttab\tseparated"
 ```
 
--   `\u` and `\U` for Unicode characters.
+  - `\u` and `\U` for Unicode characters.
+
+<!-- end list -->
 
 ``` r
 string_with_unicode <- "\U0001f978"
 ```
 
-Displaying strings
-==================
+# Displaying strings
 
 When echoed in the terminal, strings in R will be output just as they
 appear in the source code, exactly as they were typed, including the
@@ -205,15 +214,13 @@ cat("💀👻🐶🐱")
 
     ## 💀👻🐶🐱
 
-Built-in commands
-=================
+# Built-in commands
 
 Five common operations that it is worthwhile knowing the built-in
 commands for are counting, subsetting, splitting, searching, and
 combining strings.
 
-Getting information about strings (`nchar`)
--------------------------------------------
+## Getting information about strings (`nchar`)
 
 The number of characters in a string can be calculated with `nchar`
 
@@ -233,8 +240,7 @@ nchar(c("hello", "abracadabra"))
 
 **Quick question**: What information is `length("hello")` returning?
 
-Subsetting strings (`substr`)
------------------------------
+## Subsetting strings (`substr`)
 
 Parts of a string can be extracted by character position using `subtr`
 (substring). The third, fourth, and fifth characters of the word “hello”
@@ -275,8 +281,7 @@ classic_pub
 
     ## [1] "The Sheep Heid Inn"
 
-Cleaning up whitespace (`trimws`)
----------------------------------
+## Cleaning up whitespace (`trimws`)
 
 Extraneous whitespace is usually not a problem in well-curated datasets,
 but it can crop up in older and ad-hoc files, particularly when data has
@@ -290,8 +295,7 @@ trimws(icd10_with_ws)
 
     ## [1] "F41"  "F32"  "I11"  "E112"
 
-Finding strings (`grep`)
-------------------------
+## Finding strings (`grep`)
 
 Strings can be searched with `grep()` (\_g\_lobally search for a
 \_r\_egular \_e\_xpression and \_p\_rint matching lines). For now we
@@ -342,8 +346,7 @@ ifelse(grepl("F", icd10), yes='mental health', no='physical health')
 
     ## [1] "mental health"   "mental health"   "physical health" "physical health"
 
-String substitution (`gsub`)
-----------------------------
+## String substitution (`gsub`)
 
 Finding and replace can be done with `sub()` (which will replace the
 first match) and `gsub()` (which will replace all matches).
@@ -354,8 +357,7 @@ sub(pattern="Head", replacement="Heid", x=classic_pub)
 
     ## [1] "The Sheep Heid Inn"
 
-String transformation (`toupper` and `tolower`)
------------------------------------------------
+## String transformation (`toupper` and `tolower`)
 
 Capitals can be converted to lowercase and vice-versa:
 
@@ -386,8 +388,7 @@ For a more advanced version of this, see the
 [snakecase](https://cran.r-project.org/web/packages/snakecase/vignettes/caseconverters.html)
 package.
 
-String separation (`strsplit`)
-------------------------------
+## String separation (`strsplit`)
 
 A string can be divided into parts based on a specified `split`
 sequence. For example, splitting a sentence into separate words.
@@ -434,8 +435,7 @@ sessions_ymd
 
 `strsplit` returns a list of character vectors.
 
-String concatenation (`paste`)
-------------------------------
+## String concatenation (`paste`)
 
 Strings can be combined together using paste.
 
@@ -496,23 +496,22 @@ paste0('chr', 1:22)
     ## [10] "chr10" "chr11" "chr12" "chr13" "chr14" "chr15" "chr16" "chr17" "chr18"
     ## [19] "chr19" "chr20" "chr21" "chr22"
 
-Tidyverse: `stringr` and `tidyr`
-================================
+# Tidyverse: `stringr` and `tidyr`
 
 The built-in string manipulation functions can be a bit clunky to work
 with because they don’t all follow the same argument ordering
 conventions. Some functions are of the form `f(string, pattern)` while
 others are of the form `f(pattern, string)`. The
 [`stringr`](https://stringr.tidyverse.org) package is a great
-alternative because all the functions follow the format
-`f(string, pattern)`
+alternative because all the functions follow the format `f(string,
+pattern)`
 
 ``` r
 library(stringr)
 ```
 
 | Built-in                            | `stringr`                                   |
-|-------------------------------------|---------------------------------------------|
+| ----------------------------------- | ------------------------------------------- |
 | `substr(string, start, stop)`       | `str_sub(string, start, stop)`              |
 | `trimws(string, which='both')`      | `str_trim(string)`                          |
 | `grep(pattern, string)`             | `str_which(string, pattern)`                |
@@ -536,8 +535,7 @@ strsplit("The quick brown fox jumps over the lazy dog", split=" ")
 paste('2020', '09', '30', sep='-')
 ```
 
-String interpolation: `str_glue`
---------------------------------
+## String interpolation: `str_glue`
 
 Another feature that comes with the `stringr` package is interpolation,
 where part of a string is substituted with the value from a variable.
@@ -591,8 +589,7 @@ mtcars_tb %>% str_glue_data("The {car} gets {mpg} miles per gallon.")
     ## The Maserati Bora gets 15 miles per gallon.
     ## The Volvo 142E gets 21.4 miles per gallon.
 
-Working with dates (`lubridate`)
-================================
+# Working with dates (`lubridate`)
 
 One of the most common types of string data to encounter in research are
 dates. When dates are formatted in a uniform way, some information can
@@ -614,13 +611,12 @@ functionality for parsing character data into `Date`s and doing
 calculations that properly handle parculiarities like leap years and
 time zones.
 
-Creating date objects and parsing dates
----------------------------------------
+## Creating date objects and parsing dates
 
 Under the the hood, dates are stored as number of days since January
 1st, 1970 (the “\[Unix
-epoch\]”(<https://en.wikipedia.org/wiki/Unix_time>)). An object holding
-date/time information can be created with \`ISOdate()\`\`
+epoch\]”(<https://en.wikipedia.org/wiki/Unix_time>)). An object
+holding date/time information can be created with \`ISOdate()\`\`
 
 ``` r
 ISOdate(year=2021, month=3, day=10)
@@ -649,6 +645,18 @@ as they appear in the order year–month–day.
 
 ``` r
 library(lubridate)
+```
+
+    ## Warning: package 'lubridate' was built under R version 3.6.2
+
+    ## 
+    ## Attaching package: 'lubridate'
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     date, intersect, setdiff, union
+
+``` r
 ymd("2021/03/10")
 ```
 
@@ -693,18 +701,20 @@ using `parse_date_time()`. This function’s second argument is an
 of date information to look for. The orders string uses single or dual
 characters to encode the formatting of the date information:
 
--   `a` Abbreviated weekday name in the current locale. (Also matches
+  - `a` Abbreviated weekday name in the current locale. (Also matches
     full name)
--   `A` Full weekday name in the current locale. (Also matches
+  - `A` Full weekday name in the current locale. (Also matches
     abbreviated name).
--   `b` Abbreviated or full month name in the current locale.
--   `d` Day of the month as decimal number (01-31 or 0-31)
--   `m` Month as decimal number (01-12 or 1-12).
--   `w` Weekday as decimal number (0-6, Sunday is 0).
--   `y` Year without century (00-99 or 0-99).
--   `Y` Year with century.
--   `Om` Matches numeric month and English alphabetic months (Both, long
+  - `b` Abbreviated or full month name in the current locale.
+  - `d` Day of the month as decimal number (01-31 or 0-31)
+  - `m` Month as decimal number (01-12 or 1-12).
+  - `w` Weekday as decimal number (0-6, Sunday is 0).
+  - `y` Year without century (00-99 or 0-99).
+  - `Y` Year with century.
+  - `Om` Matches numeric month and English alphabetic months (Both, long
     and abbreviated forms).
+
+<!-- end list -->
 
 ``` r
 parse_date_time("2021-03-10", orders="Ymd")
@@ -739,8 +749,7 @@ parse_date_time(c("2021-03-10","Mar 10th 2021", "10 March 21", "Jan 1st 1970"), 
 
     ## [1] "2021-03-10 UTC" "2021-10-01 UTC" "2021-03-10 UTC" "1970-01-01 UTC"
 
-Calculations with dates
------------------------
+## Calculations with dates
 
 Once you have two dates, you can use subtraction to get the difference
 between them.
