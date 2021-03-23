@@ -3,6 +3,8 @@ title: "Regular expressions: finding and extracting information from strings"
 output: github_document
 ---
 
+# Regular languages
+
 A foundational question in computer science is: What kinds of problems are machines able to solve? One of the most basic types of machines ("automata") are ones with a limited amount of memory, called [finite state machines](https://en.wikipedia.org/wiki/Finite-state_machine). The types of problems that finite state machines can solve can be re-expressed as the following: given a formal set of rules definiting a language, a finite amount of memory, and an input sequence, decide whether the input sequence is part of the specified language. 
 
 Here, a "language" is an abstract formalism for sequences of symbols (strings) composed from a specified alphabet. For example, we could define a language (let's call it "Language 1") using the alphabet *Σ = {a,b}* and consists of the strings *a*, *ab*, *aab*, and *aabb*. The following machine will accept or reject strings for Language 1:
@@ -21,17 +23,20 @@ Again, the machine starts in state `S0`. If it sees the sequence `aa` it will be
 
 The first machine we defined could be specified by writing out the four sequences it accepts. However, the second machine has an infinite set of sequences it can accept. How do we encode these in compact form without enumerating all of them, or without having to think explicitely in terms of defining a finite state machine? The answer is by writing a "**regular expression**".
 
-A regular expression is string that encodes all the sequences that are part of a given regular language. A regular expression for Langauge 1 is `^a{1,2}b{0,2}$`. Breaking this down:
+A regular expression is string that encodes all the sequences that are part of a given regular language. A regular expression for Langauge 1 is `a{1,2}b{0,2}`. Breaking this down:
 
-- `^` means the start of the sequence. So `^a` means the first character must be `a`.
+- `a`: Most characters in regular expressions are literals, so this means means the first character in the string must be `a`.
 - `{1,2}` and `{0,2}`: the numbers in brackets like `{n,m}` means the preceeding symbols must appear between `n` and `m` times, so `a{1,2}` means "one or two `a`s" while `b{0,2}` means "zero, one, or two `b`s".
-- `$` matches the end of the sequence.
 
-A regular expression for Langauge 2 is `^aab+$` or `^a{2}b+$`:
+A regular expression for Langauge 2 is `aab+` or `a{2}b+`:
 
-- `^aa` means the sequence must start with literal `aa` (or we could express this pattern as `^a{2}`)
-- `b+` means "one more more `b`s"
+- `aa` means the sequence must start with literal "aa" (or we could express this pattern as `a{2}`)
+- `b+` means "one or more `b`s"
 
 This expressivity means that regular expression are really good for pattern matching (does a sequence for part of a sequence match a given pattern?). Regular expressions can be used find sequences in character data.
- 
+
+
+# Regular expressions in R
+
+
   
