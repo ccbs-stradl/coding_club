@@ -248,3 +248,20 @@ str_match(diagnoses, "^([[:upper:]][[:lower:]])([[:digit:]]+)")
 ```
 
 
+# Interactive tools
+
+There are a number of visual and interactive tools to help learn, build, and debug regular expressions.
+
+- `str_view()`: Will launch a webpage showing a visual markup of the regex pattern for each input.
+```{r, eval=FALSE}
+str_view(c("F123", "123F", "X123", "123X"), "^[[:alpha:]]")
+```
+![](../markdown_images/regex-str_view.png)
+
+- [RegExplain](https://github.com/gadenbuie/regexplain): RStudio add on for building and testing regular expressions interactively
+```{r, eval=FALSE}
+remotes::install_github("gadenbuie/regexplain")
+regexplain::regexplain_gadget(c("F123", "123F", "X123", "123X"), "^[[:alpha:]]")
+```
+- [Regular Expressions 101](https://regex101.com): online web tool for writing and testing regular expressions for different languages (choose "PCRE" for closest R compatibility)
+- [Regex Crossword](https://regexcrossword.com): crossword puzzles using regular expressions.
