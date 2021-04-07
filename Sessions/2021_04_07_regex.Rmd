@@ -192,7 +192,7 @@ str_subset(diagnoses, "F[^34]")
 
 ### Named character classes
 
-Special groups of characters can also be searched by name, which are formatted with `[:NAME:]` (a name surrouned by `:` (colons) and enclosed in square brackets:
+Special groups of characters in a list can also be specified by name, which are formatted with `[:NAME:]` (a name surrouned by `:` (colons) and enclosed in square brackets:
 
 - `[:alnum:]`: alphanumeric characters (letters and numbers)
 - `[:alpha:]`: alphabetic characters
@@ -206,12 +206,12 @@ Special groups of characters can also be searched by name, which are formatted w
 
 Match an two or more letters:
 ```{r}
-str_subset(diagnoses, "[:alpha:]{2,}")
+str_subset(diagnoses, "[[:alpha:]]{2,}")
 ```
 
 Match an uppercase letter (A-Z) followed by a lowecase character (a-z):
 ```{r}
-str_subset(diagnoses, "[:upper:][:lower:]")
+str_subset(diagnoses, "[[:upper:]][[:lower:]]")
 ```
 
 ## Anchors
@@ -220,17 +220,17 @@ By default regular expressions will match any part of the string. The boundary o
 
 Match a letter at the beginning of a string:
 ```{r}
-str_subset(c("F123", "123F", "X123", "123X"), "^[:alpha:]")
+str_subset(c("F123", "123F", "X123", "123X"), "^[[:alpha:]]")
 ```
 
 Match a letter at the end of a string:
 ```{r}
-str_subset(c("F123", "123F", "X123", "123X"), "[:alpha:]$")
+str_subset(c("F123", "123F", "X123", "123X"), "[[:alpha:]]$")
 ```
 
 Match diagnoses that start with a single character followed by 2 or 3 numbers
 ```{r}
-str_subset(diagnoses, "^[:alpha:][:digit:]{2,3}$")
+str_subset(diagnoses, "^[[:alpha:]][[:digit:]]{2,3}$")
 ```
 
 ## Groups and capturing
@@ -239,10 +239,12 @@ Parts of a string can be matched and extracted by grouping with `()` (parenthese
 
 Match and capture a single uppercase letter at the start of a string, followed by two numbers and then zero or one numbers
 ```{r}
-str_match(diagnoses, "^([:upper:])([:digit:]{2})([:digit:]?)")
+str_match(diagnoses, "^([[:upper:]])([[:digit:]]{2})([[:digit:]]?)")
 ```
 
 Match and capture an uppercase followed by a lowercase letter at the start of a string, followed by one or more numbers
 ```{r}
-str_match(diagnoses, "^([:upper:][:lower:])([:digit:]+)")
+str_match(diagnoses, "^([[:upper:]][[:lower:]])([[:digit:]]+)")
 ```
+
+
