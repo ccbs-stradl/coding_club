@@ -11,10 +11,15 @@ Note, the author of that article also wrote some nice code snippets to try out [
 ### Basic commands
 #### Working with directories
 `pwd` - prints working directory
+
 `cd ~/Coding\ Club/Sessions/command_line_data` - Change directory. Note that special characters such as spaces have to be escaped with a back slash. "~" denotes your home directory.
+
 `cd ../` - Go back one directory
+
 `cd - ` - Go back to last directory you switched from.
+
 `ls` - List what is inside a directory
+
 `ls -la` - List hidden files (precede with ".")
 
 #### Viewing files using head, less and cat
