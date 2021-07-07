@@ -15,4 +15,4 @@ head(df)
 sum(df$MAF < 0.01)
 sum(df$INFO > 0.9)
 
-write.table(df,"dummy_GWAS_sumstats" header = T)
+write.table(df,"dummy_GWAS_sumstats", quote = F, row.names = F)

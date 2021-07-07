@@ -108,11 +108,12 @@ done
 ```
 
 ### if statements
+```
 if [ -f GeneList.txt ]
 then
 echo "This file exists"
 fi
-
+```
 ### Searching files and directories using grep
 ```
 grep "TNFRSF18" GeneList.txt 
