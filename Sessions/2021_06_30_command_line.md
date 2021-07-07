@@ -63,6 +63,7 @@ wc -l GeneList.txt
 #### Printing variables or strings using echo
 ```
 ANOTHER_DIR="../../"
+echo $ANOTHER_DIR
 cd $ANOTHER_DIR
 pwd
 cd -
