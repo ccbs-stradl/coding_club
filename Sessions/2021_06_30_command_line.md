@@ -149,10 +149,10 @@ cut -d " " -f1-3 dummy_GWAS_sumstats | head
 
 ## Practice questions using some of these commands:
 Using the example data [here](command_line_data/) have a go at the answering following:
-1. View the first 5 rows of the file to get a feel for what it contains and how it is formatted. Is the file white space or comma separated?
-2. How many SNPs are in the file?
-3. Create a subset of dummy_GWAS_sumstats including SNPs with MAF > 0.01 and INFO > 0.9 and save with a new filename dummy_GWAS_sumstats_QC. *Advanced - Check for and remove duplicate SNPs.*
-4. Extract the first col of dummy_GWAS_sumstats file and save as a new file called dummy_GWAS_sumstats_SNPs.
+1. View the first 5 rows of the file `dummy_GWAS_sumstats` to get a feel for what it contains and how it is formatted. Is the file white space or comma separated?
+2. How many SNPs are in the file `dummy_GWAS_sumstats`?
+3. Create a subset of dummy_GWAS_sumstats including SNPs with MAF > 0.01 and INFO > 0.9 and save with a new filename `dummy_GWAS_sumstats_QC`. 
+4. Extract the first col of `dummy_GWAS_sumstats` file and save as a new file called `dummy_GWAS_sumstats_SNPs`.
 5. Search for SNP ID "rs110489" and print the whole line in the console. *Advanced - try saving the p-value for that SNP as a new variable.*
 6. Create a txt file called `cool_files_list.txt` which lists the paths to all the files in directory `some_cool_files/`.
 
@@ -164,10 +164,12 @@ Using the example data [here](command_line_data/) have a go at the answering fol
 3. `awk '{ if(($6 > 0.01) && ($7 > 0.9)) { print }}' dummy_GWAS_sumstats | head`
 4. cut -d " " -f1 dummy_GWAS_sumstats > dummy_GWAS_sumstats_SNPs
 5. `grep "rs110489" dummy_GWAS_sumstats`
+Get p-value from 9th col: `grep "rs110489" dummy_GWAS_sumstats | cut -d " " -f9`
 6.
 ``` 
 BASE_PATH=$(pwd)
-for i in {1..22}
+NFILES=$(ls some_cool_files/ | wc -l)
+for i in $(seq 1 $NFILES)
 do
 echo ${BASE_PATH}/some_cool_files/awesome_coding_file${i} >> cool_files_list.txt
 done
