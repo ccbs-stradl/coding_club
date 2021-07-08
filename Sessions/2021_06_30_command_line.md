@@ -146,6 +146,9 @@ cut -d " " -f1-3 dummy_GWAS_sumstats | head
 ```
 *Note if that was a .csv file then you would need `-d ","`*
 
+### Change col names
+See https://stackoverflow.com/questions/26264243/how-to-change-column-names-in-shell-bash
+
 
 ## Practice questions using some of these commands:
 Using the example data [here](command_line_data/) have a go at the answering following:
