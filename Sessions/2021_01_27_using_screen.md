@@ -50,6 +50,9 @@ eg. if I opened a screen session on `login01` then I would use the following to 
 ssh s1211670@login01-ext.ecdf.ed.ac.uk
 ```
 
+________________________________
+### Link to screen cheat sheet with keyboard short cuts
+https://gist.github.com/jctosta/af918e1618682638aa82
 
 
 
