@@ -28,15 +28,19 @@ eddie
 I've found when I have both files to `git add` and `git rm` in the same directory I can't give the directory path to add them all because of the deleted files. Annoyingly this means copying and pasting each file to `git rm` manually. This command will `git rm` all removed files. Just be careful that you do want to `git rm` all these files!
 ```sh
 git rm `git status | grep deleted | awk '{print $3}'`
+# or:
+git rm $(git status | grep deleted | awk '{print $3}')
 ```
 
 **Size of directories**
 
-Useful for seeing how much space you are using on Eddie. The first command returns the total size of the folder "PRS_project/" the seccond command uses `*` which returns the size of everything withint the "PRS_project/" folder, ie. all the subdirectories.
+Useful for seeing how much space you are using on Eddie. The first command returns the total size of the folder "PRS_project/" the seccond command uses `*` which returns the size of everything withint the "PRS_project/" folder, ie. all the subdirectories. `quota` is another alternative.
 ```sh
 du -sh /exports/igmm/eddie/GenScotDepression/amelia/PRS_project/
 du -sh /exports/igmm/eddie/GenScotDepression/amelia/PRS_project/* | sort -h
+du --max-depth=2 -h /exports/igmm/eddie/GenScotDepression/amelia/PRS_project/
 ```
+
 
 
 
