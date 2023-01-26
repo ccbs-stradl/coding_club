@@ -1,4 +1,4 @@
-## Links to useful coding realted resources
+## Links to useful coding related resources
 
 ### Documentation and Good Coding Practices:
 * [The Turing Way](https://the-turing-way.netlify.app/welcome.html)
@@ -11,6 +11,9 @@
 ### Introductions to Git, Unix, Python, R:
 * [Data](https://datacarpentry.org/lessons/) and [Software](https://software-carpentry.org/lessons/) Carpentries:
   * [Edinburgh Carpentries](https://edcarp.github.io/)
+  * [The Unix Shell](https://swcarpentry.github.io/shell-novice/)
+  * [Version Control with git](https://swcarpentry.github.io/git-novice/)
+  * [Programming with Python](http://swcarpentry.github.io/python-novice-inflammation), [Programming with R](http://swcarpentry.github.io/r-novice-inflammation/)
   
 ### Using Notebooks:
 * [A Tutorial about Analysis Notebooks](https://www.youtube.com/watch?v=WQtTrOcsfgk&list=PLfeZoWWKDNZBDJ3KNB1jLmilJo2ts2DMS&index=2&ab_channel=EdinburghMentalHealth)
