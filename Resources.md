@@ -14,6 +14,9 @@
   * [The Unix Shell](https://swcarpentry.github.io/shell-novice/)
   * [Version Control with git](https://swcarpentry.github.io/git-novice/)
   * [Programming with Python](http://swcarpentry.github.io/python-novice-inflammation), [Programming with R](http://swcarpentry.github.io/r-novice-inflammation/)
+* [Aalto Scientific Computing tips](https://scicomp.aalto.fi/scicomp/)
+  * [Linux shell](https://scicomp.aalto.fi/scicomp/shell/)
+  * [SSH](https://scicomp.aalto.fi/scicomp/ssh/)
   
 ### Using Notebooks:
 * [A Tutorial about Analysis Notebooks](https://www.youtube.com/watch?v=WQtTrOcsfgk&list=PLfeZoWWKDNZBDJ3KNB1jLmilJo2ts2DMS&index=2&ab_channel=EdinburghMentalHealth)
