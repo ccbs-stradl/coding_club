@@ -19,3 +19,29 @@ cd duckdb-0.7.1
 module load phys/compilers/gcc/9.3.0
 make
 ```
+
+### regenie
+
+[regenie](https://rgcgithub.github.io/regenie/) is a program for whole genome regression modelling and GWAS.
+
+```sh
+module load phys/compilers/gcc/9.3.0
+module load intel/2020u4
+
+git clone https://github.com/rgcgithub/regenie.git
+cd regenie
+```
+
+Edit `Makefile` so that the configuration lines read:
+```
+BGEN_PATH     = /gpfs/igmmfs01/eddie/GenScotDepression/local/bgen
+HAS_BOOST_IOSTREAM := 0
+MKLROOT       = /exports/applications/apps/SL7/intel/parallel_studio_xe_2020_update4_cluster_edition/compilers_and_libraries_2020.4.304/linux/mkl
+OPENBLAS_ROOT =
+STATIC       := 1
+```
+
+Then build the program"
+```sh
+make
+```
