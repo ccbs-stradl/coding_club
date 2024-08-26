@@ -1,5 +1,11 @@
 ### Welcome to the Kennedy Tower Coding Club!
 
+#### About
+In our department, many individuals encounter similar coding challenges eg. data cleaning/analysis and using high-performance computers. Addressing these challenges together not only makes them less daunting but also enhances efficiency by reducing duplicate efforts through shared code and resources. Additionally, good coding practices are crucial for reproducible science.
+
+The coding club’s primary aim is to foster a friendly, supportive environment for improving coding skills together. We focus on creating and sharing resources that benefit both our research group and the wider research community (https://github.com/ccbs-stradl/coding_club). ![image](https://github.com/user-attachments/assets/55a2947e-8011-49ea-ad37-6f893d53009a)
+
+
 **Please see:**
   * **[/Sessions](https://github.com/ccbs-stradl/coding_club/tree/main/Sessions) folder for materials and docs from coding club sessions.** 
   * **[Resources.md](https://github.com/ccbs-stradl/coding_club/blob/main/Resources.md) for a list of coding related resources.**
