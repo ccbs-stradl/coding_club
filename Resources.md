@@ -8,7 +8,7 @@
 
 * [How to make a good README file.](https://www.makeareadme.com/)
 
-### Introductions to Git, Unix, Python, R:
+### Introductions to Git, Unix, Python, R, SQL:
 * [Data](https://datacarpentry.org/lessons/) and [Software](https://software-carpentry.org/lessons/) Carpentries:
   * [Edinburgh Carpentries](https://edcarp.github.io/)
   * [The Unix Shell](https://swcarpentry.github.io/shell-novice/)
@@ -17,6 +17,8 @@
 * [Aalto Scientific Computing tips](https://scicomp.aalto.fi/scicomp/)
   * [Linux shell](https://scicomp.aalto.fi/scicomp/shell/)
   * [SSH](https://scicomp.aalto.fi/scicomp/ssh/)
+* **SQL**
+  * [SQL Bolt](https://sqlbolt.com/), a series of interactive lessons and exercises designed to help you quickly learn SQL right in your browser.  
   
 ### Using Notebooks:
 * [A Tutorial about Analysis Notebooks](https://www.youtube.com/watch?v=WQtTrOcsfgk&list=PLfeZoWWKDNZBDJ3KNB1jLmilJo2ts2DMS&index=2&ab_channel=EdinburghMentalHealth)
