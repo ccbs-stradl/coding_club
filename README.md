@@ -1,4 +1,4 @@
-### Welcome to the Kennedy Tower Coding Club!
+### Welcome to Coding Club!
 
 #### About
 In our department, many individuals encounter similar coding challenges eg. data cleaning/analysis and using high-performance computers. Addressing these challenges together not only makes them less daunting but also enhances efficiency by reducing duplicate efforts through shared code and resources. Additionally, good coding practices are crucial for reproducible science.
