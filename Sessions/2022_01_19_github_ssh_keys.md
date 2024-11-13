@@ -15,6 +15,9 @@ ls .ssh/
 
 # Generate a new key
 ssh-keygen -t ed25519 -C "amelia.edmondson-stait@ed.ac.uk"
+
+# Add the SSH key to the ssh-agent
+ssh-add ~/.ssh/id_ed25519
 ```
 
 Leave blank, or enter a file name, eg. github.
